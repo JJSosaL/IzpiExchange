@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:go_router/go_router.dart";
-import "package:google_fonts/google_fonts.dart";
-import "package:izpi_exchange/widgets/shared/button.dart";
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:izpi_exchange/widgets/shared/button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,11 +15,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 10,
-            children: [
-              const HomeTitle(),
-              const HomeSignInButton(),
-              const HomeSignUpButton(),
-            ],
+            children: [const HomeTitle(), const HomeSignInButton(), const HomeSignUpButton()],
           ),
         ),
       ),
@@ -33,11 +29,8 @@ class HomeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Bienvenido",
-      style: GoogleFonts.bricolageGrotesque(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-      ),
+      'Bienvenido',
+      style: GoogleFonts.bricolageGrotesque(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -48,10 +41,8 @@ class HomeSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonWidget(
-      content: "Iniciar Sesión",
-      onPressed: () {
-        context.push("/sign-in");
-      },
+      content: 'Iniciar Sesión',
+      onPressed: () => context.push('/sign-in'),
       variant: ButtonWidgetVariant.outline,
     );
   }
@@ -63,10 +54,8 @@ class HomeSignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonWidget(
-      content: "Crear Cuenta",
-      onPressed: () {
-        context.push("/sign-up");
-      },
+      content: 'Crear Cuenta',
+      onPressed: () => context.push('/sign-up'),
       variant: ButtonWidgetVariant.filled,
     );
   }

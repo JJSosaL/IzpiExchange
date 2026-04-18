@@ -1,14 +1,14 @@
-import "package:flutter/material.dart";
-import "package:go_router/go_router.dart";
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import "screens/home.dart";
-import "screens/sign_up.dart";
+import 'screens/home.dart';
+import 'screens/sign_up.dart';
 
 final router = GoRouter(
-  initialLocation: "/",
+  initialLocation: '/',
   routes: [
     GoRoute(builder: (context, state) => const HomePage(), path: '/'),
-    GoRoute(builder: (context, state) => const SignUpPage(), path: "/sign-up"),
+    GoRoute(builder: (context, state) => const SignUpPage(), path: '/sign-up'),
   ],
 );
 
@@ -28,13 +28,10 @@ class IzpiExchangeApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData(
-        colorScheme: ColorScheme.light(
-          primary: Colors.black,
-          surface: Colors.white,
-        ),
+        colorScheme: ColorScheme.light(primary: Colors.black, surface: Colors.white),
         primaryColor: Colors.black,
       ),
-      title: "IzpiExchange",
+      title: 'IzpiExchange',
     );
   }
 }

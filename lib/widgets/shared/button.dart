@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ButtonWidget extends StatelessWidget {
-  final String content;
-  final VoidCallback onPressed;
-  final ButtonWidgetVariant variant;
-
   const ButtonWidget({
     super.key,
     required this.content,
     required this.onPressed,
     required this.variant,
   });
+
+  final String content;
+  final VoidCallback onPressed;
+  final ButtonWidgetVariant variant;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +22,14 @@ class ButtonWidget extends StatelessWidget {
       child: TextButton(
         style: buttonStyle,
         onPressed: onPressed,
-        child: Text(
-          content,
-          style: GoogleFonts.bricolageGrotesque(fontWeight: FontWeight.bold),
-        ),
+        child: Text(content, style: GoogleFonts.bricolageGrotesque(fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   ButtonStyle _getButtonStyle() {
-    EdgeInsets padding = const EdgeInsets.symmetric(
-      horizontal: 12,
-      vertical: 8,
-    );
-    OutlinedBorder shape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(999),
-    );
+    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+    OutlinedBorder shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(999));
 
     switch (variant) {
       case ButtonWidgetVariant.filled:
