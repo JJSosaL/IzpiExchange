@@ -1,0 +1,26 @@
+{
+	"author": "JJSosaL",
+	"dependencies": {
+		"@nestjs/common": "11.1.19",
+		"@nestjs/core": "11.1.19",
+		"zod": "4.3.6"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.12",
+		"@nestjs/cli": "11.0.21",
+		"@types/node": "25.6.0",
+		"typescript": "6.0.3"
+	},
+	"license": "CC-BY-SA-4.0",
+	"main": "dist/index.js",
+	"name": "izpi_exchange_api",
+	"private": true,
+	"scripts": {
+		"biome:check": "biome check",
+		"biome:ci": "biome ci",
+		"biome:write": "biome check --write",
+		"nest:build": "nest build",
+		"nest:dev": "nest start --watch",
+		"nest:start": "node dist/index.js"
+	}
+}
