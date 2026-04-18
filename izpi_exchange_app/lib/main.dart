@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'screens/home.dart';
-import 'screens/sign_up.dart';
+import 'package:izpi_exchange/features/auth/sign_up.screen.dart';
+import 'package:izpi_exchange/features/home/home.screen.dart';
 
 final router = GoRouter(
   initialLocation: '/',

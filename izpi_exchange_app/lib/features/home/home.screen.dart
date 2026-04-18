@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:izpi_exchange/widgets/shared/button.dart';
+import 'package:izpi_exchange/shared/widgets/button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
