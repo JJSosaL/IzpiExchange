@@ -1,1 +1,1 @@
-final String baseUri = 'izpiexchange.fancystudio.xyz';
+final String baseUriDomain = String.fromEnvironment('API_DOMAIN');

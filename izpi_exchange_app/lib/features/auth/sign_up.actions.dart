@@ -13,7 +13,7 @@ import 'package:izpi_exchange/core/rest/rest.response.dart';
   información del error.
 */
 Future<RESTResponse> signUp(String email, String password) async {
-  final requestUri = Uri.https(baseUri, 'api/sign-up');
+  final requestUri = Uri.https(baseUriDomain, 'api/sign-up');
   final requestBody = {'email': email, 'password': password};
 
   final response = await http.post(requestUri, body: requestBody);
