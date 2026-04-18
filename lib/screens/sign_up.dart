@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:izpi_exchange/widgets/forms/text_input.dart";
 import "package:izpi_exchange/widgets/shared/button.dart";
-import "package:izpi_exchange/widgets/shared/text_input.dart";
+import "package:izpi_exchange/widgets/forms/password_input.dart";
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -17,7 +18,8 @@ class SignUpPage extends StatelessWidget {
             spacing: 10,
             children: [
               const SignUpTitle(),
-              const SignUpForm(),
+              const TextInputWidget(label: "Correo Electrónico"),
+              const PasswordInputWidget(label: "Contraseña"),
               const SignUpSubmitButton(),
             ],
           ),
@@ -38,21 +40,6 @@ class SignUpTitle extends StatelessWidget {
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
-    );
-  }
-}
-
-class SignUpForm extends StatelessWidget {
-  const SignUpForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      spacing: 10,
-      children: [
-        TextInputWidget(label: "Correo Electrónico"),
-        TextInputWidget(label: "Contraseña"),
-      ],
     );
   }
 }

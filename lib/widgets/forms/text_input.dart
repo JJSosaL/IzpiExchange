@@ -16,12 +16,14 @@ class TextInputWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(999),
             borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
-          labelText: label,
+
           labelStyle: GoogleFonts.bricolageGrotesque(
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
+            color: Colors.black,
+
             fontSize: 15,
+            fontWeight: FontWeight.normal,
           ),
+          labelText: label,
         ),
       ),
     );
