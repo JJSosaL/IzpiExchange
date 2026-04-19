@@ -7,13 +7,6 @@ Una aplicación multiplataforma (disponible para Android e iOS) que te permite h
 
 ---
 
-## 🗄️ Estructura del Repositorio
-
-Este repositorio se compone de dos carpetas principales donde se encuentra todo el código fuente de la aplicación.
-
-- **📱 App**: El código fuente de la aplicación hecha con Flutter y Dart.
-- **💻 API**: El código fuente de la API hecha con Nest.js y TypeScript.
-
 ## 📄 Licencia
 
 Este proyecto fue creado originalmente por [**JJSosaL**][JJSosaLGitHubProfileUrl] y está bajo la licencia de [**CC BY-SA 4.0**][CreativeCommonsLicenceUrl].
