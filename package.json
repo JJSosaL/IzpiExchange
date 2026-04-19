@@ -1,6 +1,7 @@
 {
 	"author": "JJSosaL",
 	"devDependencies": {
+		"@biomejs/biome": "2.4.12",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0"
 	},
@@ -8,6 +9,9 @@
 	"name": "izpi_exchange",
 	"private": true,
 	"scripts": {
+		"biome:check": "biome check",
+		"biome:ci": "biome ci",
+		"biome:write": "biome check --write",
 		"prepare": "husky"
 	},
 	"type": "module"
