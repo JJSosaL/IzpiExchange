@@ -1,0 +1,14 @@
+{
+	"author": "JJSosaL",
+	"devDependencies": {
+		"husky": "9.1.7",
+		"lint-staged": "16.4.0"
+	},
+	"license": "CC-BY-SA-4.0",
+	"name": "izpi_exchange",
+	"private": true,
+	"scripts": {
+		"prepare": "husky"
+	},
+	"type": "module"
+}
