@@ -1,0 +1,14 @@
+updates:
+    - directory: /
+      package-ecosystem: pub
+      schedule:
+          interval: daily
+      versioning-strategy: increase
+
+    - directory: /
+      package-ecosystem: npm
+      schedule:
+          interval: daily
+          versioning-strategy: increase
+
+version: 2
