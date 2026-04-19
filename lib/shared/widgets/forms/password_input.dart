@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:izpi_exchange/shared/styles/text.font.dart';
 
 class PasswordInputWidget extends StatefulWidget {
   const PasswordInputWidget({super.key, required this.controller, required this.label});
@@ -25,7 +25,7 @@ class _PasswordInputState extends State<PasswordInputWidget> {
             borderRadius: BorderRadius.circular(999),
             borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
-          labelStyle: GoogleFonts.bricolageGrotesque(
+          labelStyle: defaultFont(
             color: Colors.black,
             fontWeight: FontWeight.normal,
             fontSize: 15,
@@ -34,7 +34,7 @@ class _PasswordInputState extends State<PasswordInputWidget> {
           suffixIcon: IconButton(icon: _getIcon(), onPressed: _handleObscure),
         ),
         obscureText: _obscure,
-        style: GoogleFonts.bricolageGrotesque(color: Colors.black),
+        style: defaultFont(color: Colors.black),
       ),
     );
   }
