@@ -25,11 +25,7 @@ class _PasswordInputState extends State<PasswordInputWidget> {
             borderRadius: BorderRadius.circular(999),
             borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
-          labelStyle: defaultFont(
-            color: Colors.black,
-            fontWeight: FontWeight.normal,
-            fontSize: 15,
-          ),
+          labelStyle: defaultFont(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 15),
           labelText: widget.label,
           suffixIcon: IconButton(icon: _getIcon(), onPressed: _handleObscure),
         ),
