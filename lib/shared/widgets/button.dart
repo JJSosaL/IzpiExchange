@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
 
 class Button extends StatelessWidget {
-  const Button({
-    super.key,
-
-    required this.content,
-    required this.onPressed,
-    required this.variant,
-  });
+  const Button({super.key, required this.content, required this.onPressed, required this.variant});
 
   final String content;
   final VoidCallback onPressed;
