@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
+import 'package:izpi_exchange/core/auth/auth.constants.dart';
+import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
 
-Future<String?> createSignUpRequest(String email, BuildContext context) async {
-  final requestUri = createRequestUri('api/auth/sign-up');
-  final requestBody = {'email': email};
+Future<String?> createVerifySignUpOtpRequest(String otpCode, BuildContext context) async {
+  final requestUri = createRequestUri('api/auth/sign-up/verify-otp');
+  final requestBody = {'otp': otpCode};
 
   final response = await post(
     requestUri,
@@ -15,8 +17,13 @@ Future<String?> createSignUpRequest(String email, BuildContext context) async {
   );
 
   if (response.statusCode == 201) {
+    final responseBody = json.decode(response.body);
+    final responseAccessToken = responseBody['accessToken'];
+
+    await flutterSecureStorage.write(key: accessTokenKey, value: responseAccessToken);
+
     if (context.mounted) {
-      context.go('/auth/verify-otp');
+      context.go('/');
     }
 
     return null;
