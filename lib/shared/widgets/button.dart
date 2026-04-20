@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:izpi_exchange/shared/styles/text.font.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     super.key,
+
     required this.content,
     required this.onPressed,
     required this.variant,
@@ -22,13 +23,13 @@ class ButtonWidget extends StatelessWidget {
       child: TextButton(
         style: buttonStyle,
         onPressed: onPressed,
-        child: Text(content, style: GoogleFonts.bricolageGrotesque(fontWeight: FontWeight.bold)),
+        child: Text(content, style: defaultFont(fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   ButtonStyle _getButtonStyle() {
-    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 15, vertical: 10);
     OutlinedBorder shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(999));
 
     switch (variant) {
@@ -48,7 +49,7 @@ class ButtonWidget extends StatelessWidget {
             foregroundColor: Colors.black,
             padding: padding,
             shape: shape,
-            side: const BorderSide(color: Colors.black, width: 2),
+            side: const BorderSide(color: Colors.black, width: 1),
           );
         }
     }
