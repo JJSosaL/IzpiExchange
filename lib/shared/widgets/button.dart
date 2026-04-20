@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
+class Button extends StatelessWidget {
+  const Button({
     super.key,
 
     required this.content,
@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
 
   final String content;
   final VoidCallback onPressed;
-  final ButtonWidgetVariant variant;
+  final ButtonVariant variant;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ButtonWidget extends StatelessWidget {
     OutlinedBorder shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(999));
 
     switch (variant) {
-      case ButtonWidgetVariant.filled:
+      case ButtonVariant.filled:
         {
           return TextButton.styleFrom(
             backgroundColor: Colors.black,
@@ -42,7 +42,7 @@ class ButtonWidget extends StatelessWidget {
             shape: shape,
           );
         }
-      case ButtonWidgetVariant.outline:
+      case ButtonVariant.outline:
         {
           return TextButton.styleFrom(
             backgroundColor: Colors.white,
@@ -56,4 +56,4 @@ class ButtonWidget extends StatelessWidget {
   }
 }
 
-enum ButtonWidgetVariant { filled, outline }
+enum ButtonVariant { filled, outline }
