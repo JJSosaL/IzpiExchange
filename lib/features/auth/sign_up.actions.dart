@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:izpi_exchange/core/rest/rest.constants.dart';
+import 'package:izpi_exchange/core/rest/rest.functions.dart';
 import 'package:izpi_exchange/core/rest/rest.response.dart';
 
 /*
@@ -13,10 +13,14 @@ import 'package:izpi_exchange/core/rest/rest.response.dart';
   información del error.
 */
 Future<RESTResponse> signUp(String email, String password) async {
-  final requestUri = Uri.https(baseUriDomain, 'api/sign-up');
+  final requestUri = createRequestUri('api/auth/sign-up');
   final requestBody = {'email': email, 'password': password};
 
-  final response = await http.post(requestUri, body: requestBody);
+  final response = await http.post(
+    requestUri,
+    body: jsonEncode(requestBody),
+    headers: {'content-type': 'application/json'},
+  );
 
   if (response.statusCode == 201) {
     return RESTResponse(message: '', success: true);

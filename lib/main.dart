@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izpi_exchange/features/auth/sign_up.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
+import 'package:izpi_exchange/features/verify_otp/verify_otp.screen.dart';
 
 final router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(builder: (context, state) => const HomePage(), path: '/'),
     GoRoute(builder: (context, state) => const SignUpPage(), path: '/sign-up'),
+    GoRoute(builder: (context, state) => const VerifyOtpPage(), path: '/verify-otp'),
   ],
 );
 

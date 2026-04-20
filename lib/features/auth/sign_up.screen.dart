@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izpi_exchange/features/auth/sign_up.actions.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
 import 'package:izpi_exchange/shared/widgets/button.dart';
@@ -52,26 +53,28 @@ class _SignUpPageState extends State<SignUpPage> {
     final email = emailController.text;
     final password = passwordController.text;
 
-    // final response = await signUp(email, password);
+    final response = await signUp(email, password);
 
     if (!mounted) return;
+
+    if (response.success) {
+      return context.go('/verify-otp');
+    } else {
+      String message = response.message;
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                'Ha ocurrido un error bastante',
-                style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
+              Text(message, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
             ],
           ),
           persist: false,
           showCloseIcon: true,
         ),
       );
-
+    }
   }
 }
 
