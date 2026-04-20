@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/widgets/button.dart';
 import 'package:izpi_exchange/shared/widgets/forms/text_input.dart';
 
 class VerifyOtpTitle extends StatelessWidget {
@@ -24,12 +26,23 @@ class VerifyOtpDescription extends StatelessWidget {
 }
 
 class VerifyOtpCodeInput extends StatelessWidget {
-  const VerifyOtpCodeInput({super.key, required this.otpController});
+  const VerifyOtpCodeInput({super.key, required this.controller});
 
-  final TextEditingController otpController;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    return TextInputWidget(controller: otpController, label: "Código OTP");
+    return TextInputWidget(controller: controller, label: 'Código OTP');
+  }
+}
+
+class VerifyOtpButton extends StatelessWidget {
+  const VerifyOtpButton({super.key, required this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Button(content: 'Verificar Correo', onPressed: onPressed, variant: ButtonVariant.filled);
   }
 }
