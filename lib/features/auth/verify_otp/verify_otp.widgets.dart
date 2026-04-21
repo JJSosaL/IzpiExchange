@@ -9,7 +9,10 @@ class VerifyOtpTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Verificar Identidad', style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold));
+    return Text(
+      'Verificar Identidad',
+      style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold),
+    );
   }
 }
 
