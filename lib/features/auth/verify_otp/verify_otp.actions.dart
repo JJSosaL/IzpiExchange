@@ -5,10 +5,15 @@ import 'package:http/http.dart';
 import 'package:izpi_exchange/core/auth/auth.constants.dart';
 import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
+import 'package:izpi_exchange/core/rest/rest.response.dart';
 
-Future<String?> createVerifySignUpOtpRequest(String otpCode, BuildContext context) async {
-  final requestUri = createRequestUri('api/auth/sign-up/verify-otp');
-  final requestBody = {'otp': otpCode};
+Future<RESTResponse> createVerifySignUpOtpRequest(
+  String otpCode,
+  String action,
+  BuildContext context,
+) async {
+  final requestUri = createRequestUri('api/auth/verify-otp');
+  final requestBody = {'action': action, 'otp': otpCode};
 
   final response = await post(
     requestUri,
@@ -28,11 +33,11 @@ Future<String?> createVerifySignUpOtpRequest(String otpCode, BuildContext contex
       context.go('/');
     }
 
-    return null;
+    return RESTResponse(message: 'OK', success: true);
   } else {
     final responseBody = json.decode(response.body);
     final responseMessage = responseBody['message'];
 
-    return responseMessage;
+    return RESTResponse(message: responseMessage, success: false);
   }
 }

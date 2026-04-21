@@ -12,8 +12,6 @@ final router = GoRouter(
   redirect: (context, state) async {
     final accessToken = await flutterSecureStorage.read(key: accessTokenKey);
 
-    print(accessToken);
-
     final hasAccessToken = accessToken != null;
     final isAuthenticating = state.matchedLocation.startsWith('/auth/');
 
@@ -31,7 +29,23 @@ final router = GoRouter(
     GoRoute(builder: (_, _) => const HomePage(), path: '/'),
     GoRoute(builder: (_, _) => const AuthPage(), path: '/auth'),
     GoRoute(builder: (_, _) => const SignUpPage(), path: '/auth/sign-up'),
-    GoRoute(builder: (_, _) => const VerifyOtpPage(), path: '/auth/verify-otp'),
+    GoRoute(
+      builder: (context, state) {
+        final action = state.pathParameters['action']!;
+
+        return VerifyOtpPage(action: action);
+      },
+      redirect: (context, state) {
+        final action = state.pathParameters['action'];
+
+        if (action == null || action.isEmpty) {
+          return '/auth';
+        }
+
+        return null;
+      },
+      path: '/auth/verify-otp/:action',
+    ),
   ],
 );
 

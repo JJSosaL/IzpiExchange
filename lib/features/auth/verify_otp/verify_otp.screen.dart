@@ -4,7 +4,9 @@ import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.widgets.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
 
 class VerifyOtpPage extends StatefulWidget {
-  const VerifyOtpPage({super.key});
+  const VerifyOtpPage({super.key, required this.action});
+
+  final String action;
 
   @override
   State<StatefulWidget> createState() => _VerifyOtpPageState();
@@ -12,6 +14,7 @@ class VerifyOtpPage extends StatefulWidget {
 
 class _VerifyOtpPageState extends State<VerifyOtpPage> {
   final otpController = TextEditingController();
+
   bool isLoading = false;
 
   @override
@@ -57,13 +60,14 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
     setState(() => isLoading = true);
 
     try {
+      final otpAction = widget.action.toUpperCase();
       final otpCode = otpController.text;
-      final response = await createVerifySignUpOtpRequest(otpCode, context);
 
-      // Verificar si la respuesta es un mensaje de error.
-      if (response is String) {
+      final response = await createVerifySignUpOtpRequest(otpCode, otpAction, context);
+
+      if (!response.success) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildVerifyOtpSnackBar(response));
+          ScaffoldMessenger.of(context).showSnackBar(_buildVerifyOtpSnackBar(response.message));
         }
       }
     } finally {
