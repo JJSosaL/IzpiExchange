@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
+import 'package:izpi_exchange/core/rest/rest.response.dart';
 
-Future<String?> createSignUpRequest(String email, BuildContext context) async {
+Future<RESTResponse> createSignUpRequest(String email, BuildContext context) async {
   final requestUri = createRequestUri('api/auth/sign-up');
   final requestBody = {'email': email};
 
@@ -17,14 +18,14 @@ Future<String?> createSignUpRequest(String email, BuildContext context) async {
   if (response.statusCode == 201) {
     if (context.mounted) {
       // Utilizar 'push' para utilizar el historial de navegación.
-      context.push('/auth/verify-otp/sign_up');
+      context.push('/auth/verify_otp/sign_up');
     }
 
-    return null;
+    return RESTResponse(message: 'OK', success: true);
   } else {
     final responseBody = json.decode(response.body);
     final responseMessage = responseBody['message'];
 
-    return responseMessage;
+    return RESTResponse(message: responseMessage, success: false);
   }
 }

@@ -60,10 +60,9 @@ class _SignUpPageState extends State<SignUpPage> {
       final email = emailController.text;
       final response = await createSignUpRequest(email, context);
 
-      // Verificar si la respuesta es un mensaje de error.
-      if (response is String) {
+      if (!response.success) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildSignUpSnackBar(response));
+          ScaffoldMessenger.of(context).showSnackBar(_buildSignUpSnackBar(response.message));
         }
       }
     } finally {
