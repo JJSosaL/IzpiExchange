@@ -9,7 +9,7 @@ class VerifyOtpTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Verificar Correo', style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold));
+    return Text('Verificar Identidad', style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold));
   }
 }
 
@@ -19,7 +19,7 @@ class VerifyOtpDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Te hemos envíado un correo electrónico con un código de 6 dígitos.',
+      'Introduce el código de 6 dígitos envíado a tu correo electrónico.',
       style: defaultFont(fontSize: 15, fontWeight: FontWeight.normal),
     );
   }
@@ -45,7 +45,7 @@ class VerifyOtpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: SharedFilledButton(content: 'Verificar Correo', onPressed: onPressed),
+      child: SharedFilledButton(content: 'Verificar Identidad', onPressed: onPressed),
     );
   }
 }
