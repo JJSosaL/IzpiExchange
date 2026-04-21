@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
-import 'package:izpi_exchange/shared/widgets/button.dart';
+import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
+import 'package:izpi_exchange/shared/widgets/buttons/outline_button.dart';
 
 class AuthTitle extends StatelessWidget {
   const AuthTitle({super.key});
@@ -17,10 +18,12 @@ class AuthSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(
-      content: 'Iniciar Sesión',
-      onPressed: () => context.push('/auth/sign-in'),
-      variant: ButtonVariant.outline,
+    return SizedBox(
+      width: double.infinity,
+      child: SharedOutlinedButton(
+        content: 'Iniciar Sesión',
+        onPressed: () => context.push('/auth/sign-in'),
+      ),
     );
   }
 }
@@ -30,10 +33,12 @@ class AuthSignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(
-      content: 'Crear Cuenta',
-      onPressed: () => context.push('/auth/sign-up'),
-      variant: ButtonVariant.filled,
+    return SizedBox(
+      width: double.infinity,
+      child: SharedFilledButton(
+        content: 'Crear Cuenta',
+        onPressed: () => context.push('/auth/sign-up'),
+      ),
     );
   }
 }
