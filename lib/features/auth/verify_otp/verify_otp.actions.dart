@@ -20,6 +20,7 @@ Future<String?> createVerifySignUpOtpRequest(String otpCode, BuildContext contex
     final responseBody = json.decode(response.body);
     final responseAccessToken = responseBody['accessToken'];
 
+    // Guardar el token de acceso en la aplicación.
     await flutterSecureStorage.write(key: accessTokenKey, value: responseAccessToken);
 
     if (context.mounted) {
