@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izpi_exchange/features/auth/sign_up.screen.dart';
+import 'package:izpi_exchange/core/auth/auth.constants.dart';
+import 'package:izpi_exchange/core/auth/auth.storage.dart';
+import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
+import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
-import 'package:izpi_exchange/features/verify_otp/verify_otp.screen.dart';
 
 final router = GoRouter(
   initialLocation: '/',
+  redirect: (context, state) async {
+    final accessToken = await flutterSecureStorage.read(key: accessTokenKey);
+    final hasAccessToken = accessToken != null;
+
+    return null;
+  },
   routes: [
-    GoRoute(builder: (context, state) => const HomePage(), path: '/'),
-    GoRoute(builder: (context, state) => const SignUpPage(), path: '/sign-up'),
-    GoRoute(builder: (context, state) => const VerifyOtpPage(), path: '/verify-otp'),
+    GoRoute(builder: (_, _) => const HomePage(), path: '/'),
+    GoRoute(builder: (_, _) => const SignUpPage(), path: '/auth/sign-up'),
+    GoRoute(builder: (_, _) => const VerifyOtpPage(), path: '/auth/verify-otp'),
   ],
 );
 

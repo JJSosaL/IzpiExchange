@@ -39,7 +39,7 @@ class VerifyOtpCodeInput extends StatelessWidget {
 class VerifyOtpButton extends StatelessWidget {
   const VerifyOtpButton({super.key, required this.onPressed});
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

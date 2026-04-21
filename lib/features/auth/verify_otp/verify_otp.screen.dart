@@ -30,9 +30,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
               VerifyOtpCodeInput(controller: otpController),
               VerifyOtpButton(
                 onPressed: isLoading
-                    ? () {
-                        null;
-                      }
+                    ? null
                     : _handleSubmit,
               ),
             ],
