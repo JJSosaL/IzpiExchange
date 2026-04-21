@@ -13,7 +13,7 @@ Future<RESTResponse> createVerifySignUpOtpRequest(
   BuildContext context,
 ) async {
   final requestUri = createRequestUri('api/auth/verify-otp');
-  final requestBody = {'action': action, 'otp': otpCode};
+  final requestBody = {'action': action, 'otpCode': otpCode};
 
   final response = await post(
     requestUri,
