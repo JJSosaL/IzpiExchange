@@ -22,7 +22,7 @@ class AuthSignInButton extends StatelessWidget {
       width: double.infinity,
       child: SharedOutlinedButton(
         content: 'Iniciar Sesión',
-        onPressed: () => context.push('/auth/sign-in'),
+        onPressed: () => context.push('/auth/sign_in'),
       ),
     );
   }
@@ -37,7 +37,7 @@ class AuthSignUpButton extends StatelessWidget {
       width: double.infinity,
       child: SharedFilledButton(
         content: 'Crear Cuenta',
-        onPressed: () => context.push('/auth/sign-up'),
+        onPressed: () => context.push('/auth/sign_up'),
       ),
     );
   }
