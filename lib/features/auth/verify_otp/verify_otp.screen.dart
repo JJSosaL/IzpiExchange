@@ -21,7 +21,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
             children: [
@@ -46,6 +46,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   SnackBar _buildVerifyOtpSnackBar(String errorMessage) {
     return SnackBar(
       content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      persist: false,
       showCloseIcon: true,
     );
   }

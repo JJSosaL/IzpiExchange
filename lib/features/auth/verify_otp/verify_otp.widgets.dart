@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
-import 'package:izpi_exchange/shared/widgets/button.dart';
+import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
 import 'package:izpi_exchange/shared/widgets/forms/text_input.dart';
 
 class VerifyOtpTitle extends StatelessWidget {
@@ -19,7 +19,7 @@ class VerifyOtpDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Te hemos envíado un correo eletrónico con un código de 6 dígitos.',
+      'Te hemos envíado un correo electrónico con un código de 6 dígitos.',
       style: defaultFont(fontSize: 15, fontWeight: FontWeight.normal),
     );
   }
@@ -43,6 +43,9 @@ class VerifyOtpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(content: 'Verificar Correo', onPressed: onPressed, variant: ButtonVariant.filled);
+    return SizedBox(
+      width: double.infinity,
+      child: SharedFilledButton(content: 'Verificar Correo', onPressed: onPressed),
+    );
   }
 }
