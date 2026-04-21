@@ -19,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
