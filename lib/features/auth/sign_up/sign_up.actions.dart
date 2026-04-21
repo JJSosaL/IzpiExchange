@@ -16,7 +16,7 @@ Future<String?> createSignUpRequest(String email, BuildContext context) async {
 
   if (response.statusCode == 201) {
     if (context.mounted) {
-      context.go('/auth/verify-otp');
+      context.push('/auth/verify-otp');
     }
 
     return null;

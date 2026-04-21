@@ -28,11 +28,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
               const VerifyOtpTitle(),
               const VerifyOtpDescription(),
               VerifyOtpCodeInput(controller: otpController),
-              VerifyOtpButton(
-                onPressed: isLoading
-                    ? null
-                    : _handleSubmit,
-              ),
+              VerifyOtpButton(onPressed: isLoading ? null : _handleSubmit),
             ],
           ),
         ),

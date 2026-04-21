@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.actions.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.widgets.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
-import 'package:izpi_exchange/shared/widgets/button.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -13,6 +12,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               const SignUpTitle(),
               SignUpEmailInput(controller: emailController),
-              SignUpSubmitButton(onPressed: _handleSubmit),
+              SignUpSubmitButton(onPressed: isLoading ? null : _handleSubmit),
             ],
           ),
         ),
@@ -42,36 +42,29 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  Future<void> _handleSubmit() async {
-    final email = emailController.text;
-    final response = await createSignUpRequest(email, context);
-
-    if (response is String) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(response, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
-              ],
-            ),
-            persist: false,
-            showCloseIcon: true,
-          ),
-        );
-      }
-    }
+  SnackBar _buildSignUpSnackBar(String errorMessage) {
+    return SnackBar(
+      content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      showCloseIcon: true,
+    );
   }
-}
 
-class SignUpSubmitButton extends StatelessWidget {
-  const SignUpSubmitButton({super.key, required this.onPressed});
+  Future<void> _handleSubmit() async {
+    if (isLoading) return;
 
-  final VoidCallback onPressed;
+    setState(() => isLoading = true);
 
-  @override
-  Widget build(BuildContext context) {
-    return Button(content: 'Crear Cuenta', onPressed: onPressed, variant: ButtonVariant.filled);
+    try {
+      final email = emailController.text;
+      final response = await createSignUpRequest(email, context);
+
+      if (response is String) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(_buildSignUpSnackBar(response));
+        }
+      }
+    } finally {
+      setState(() => isLoading = false);
+    }
   }
 }

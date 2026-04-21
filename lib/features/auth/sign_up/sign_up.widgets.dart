@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/widgets/button.dart';
 import 'package:izpi_exchange/shared/widgets/forms/text_input.dart';
 
 class SignUpTitle extends StatelessWidget {
@@ -19,5 +20,16 @@ class SignUpEmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextInputWidget(controller: controller, label: 'Correo Eletrónico');
+  }
+}
+
+class SignUpSubmitButton extends StatelessWidget {
+  const SignUpSubmitButton({super.key, required this.onPressed});
+
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Button(content: 'Crear Cuenta', onPressed: onPressed, variant: ButtonVariant.filled);
   }
 }
