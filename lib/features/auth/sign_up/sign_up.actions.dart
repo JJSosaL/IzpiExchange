@@ -17,7 +17,7 @@ Future<String?> createSignUpRequest(String email, BuildContext context) async {
   if (response.statusCode == 201) {
     if (context.mounted) {
       // Utilizar 'push' para utilizar el historial de navegación.
-      context.push('/auth/verify-otp');
+      context.push('/auth/verify-otp/sign_up');
     }
 
     return null;
