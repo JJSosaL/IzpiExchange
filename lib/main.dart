@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izpi_exchange/core/auth/auth.constants.dart';
 import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/features/auth/index/index.screen.dart';
+import 'package:izpi_exchange/features/auth/sign_in/sign_in.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
@@ -28,7 +29,8 @@ final router = GoRouter(
   routes: [
     GoRoute(builder: (_, _) => const HomePage(), path: '/'),
     GoRoute(builder: (_, _) => const AuthPage(), path: '/auth'),
-    GoRoute(builder: (_, _) => const SignUpPage(), path: '/auth/sign-up'),
+    GoRoute(builder: (_, _) => const SignInPage(), path: '/auth/sign_in'),
+    GoRoute(builder: (_, _) => const SignUpPage(), path: '/auth/sign_up'),
     GoRoute(
       builder: (context, state) {
         final action = state.pathParameters['action']!;
