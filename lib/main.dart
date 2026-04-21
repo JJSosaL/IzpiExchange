@@ -12,12 +12,18 @@ final router = GoRouter(
   redirect: (context, state) async {
     final accessToken = await flutterSecureStorage.read(key: accessTokenKey);
 
+    print(accessToken);
+
     final hasAccessToken = accessToken != null;
-    final goingToAuth = state.matchedLocation.startsWith('/auth');
+    final isAuthenticating = state.matchedLocation.startsWith('/auth/');
 
-    if (!hasAccessToken && !goingToAuth) return '/auth';
+    if (!hasAccessToken && !isAuthenticating) {
+      return '/auth';
+    }
 
-    if (hasAccessToken && goingToAuth) return '/';
+    if (hasAccessToken && isAuthenticating) {
+      return '/';
+    }
 
     return null;
   },
