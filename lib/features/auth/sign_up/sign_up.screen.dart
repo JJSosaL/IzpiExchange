@@ -12,6 +12,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
+
   bool isLoading = false;
 
   @override
@@ -21,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
             children: [
@@ -45,6 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
   SnackBar _buildSignUpSnackBar(String errorMessage) {
     return SnackBar(
       content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      persist: false,
       showCloseIcon: true,
     );
   }

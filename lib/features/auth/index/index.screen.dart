@@ -11,7 +11,7 @@ class AuthPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
             children: const [AuthTitle(), AuthSignInButton(), AuthSignUpButton()],
