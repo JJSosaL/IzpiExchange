@@ -46,7 +46,7 @@ final router = GoRouter(
 
         return null;
       },
-      path: '/auth/verify-otp/:action',
+      path: '/auth/verify_otp/:action',
     ),
   ],
 );
