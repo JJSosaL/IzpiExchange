@@ -24,6 +24,7 @@ Future<String?> createVerifySignUpOtpRequest(String otpCode, BuildContext contex
     await flutterSecureStorage.write(key: accessTokenKey, value: responseAccessToken);
 
     if (context.mounted) {
+      // Utilizar 'go' para eliminar el historial de navegación.
       context.go('/');
     }
 
