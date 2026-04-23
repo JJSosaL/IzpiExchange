@@ -15,7 +15,7 @@ Future<RESTResponse> createSignInRequest(String email, BuildContext context) asy
     headers: {'content-type': 'application/json'},
   );
 
-  if (response.statusCode == 201) {
+  if (response.statusCode == 202) {
     if (context.mounted) {
       // Utilizar 'push' para utilizar el historial de navegación.
       context.push('/auth/verify_otp/sign_in');
