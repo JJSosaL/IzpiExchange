@@ -36,7 +36,7 @@ class _PasswordInputState extends State<PasswordInputWidget> {
   }
 
   Icon _getIcon() {
-    return Icon(_obscure ? Icons.visibility_off : Icons.visibility);
+    return Icon(_obscure ? Icons.visibility_off_rounded : Icons.visibility_rounded);
   }
 
   void _handleObscure() {
