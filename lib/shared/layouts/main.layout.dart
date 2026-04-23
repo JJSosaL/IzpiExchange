@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izpi_exchange/shared/styles/text.font.dart';
+
+class MainLayout extends StatelessWidget {
+  const MainLayout({super.key, required this.body, required this.title});
+
+  final Widget body;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MainLayoutAppBar(title: title),
+      body: body,
+      bottomNavigationBar: MainLayoutNavigationBar(),
+    );
+  }
+}
+
+class MainLayoutAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MainLayoutAppBar({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        child: Row(children: [_getTitleWidget()]),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(100);
+
+  Text _getTitleWidget() {
+    return Text(title, style: defaultFont(fontSize: 25, fontWeight: FontWeight.bold));
+  }
+}
+
+class MainLayoutNavigationBar extends StatelessWidget {
+  const MainLayoutNavigationBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: _getNavigationBarLinkWidgets(),
+        ),
+      ),
+    );
+  }
+
+  List<_NavigationBarItem> _getNavigationBarItems() {
+    return [
+      _NavigationBarItem(icon: Icons.home_filled, label: 'Inicio', location: '/'),
+      _NavigationBarItem(icon: Icons.inbox, label: 'Bandeja', location: '/inbox'),
+      _NavigationBarItem(icon: Icons.add_circle, label: 'Publicar', location: '/publish'),
+      _NavigationBarItem(icon: Icons.chat, label: 'Mensajes', location: '/chats'),
+      _NavigationBarItem(icon: Icons.account_circle, label: 'Cuenta', location: '/account'),
+    ];
+  }
+
+  List<MainLayoutNavigationBarLink> _getNavigationBarLinkWidgets() {
+    return _getNavigationBarItems()
+        .map(
+          (item) => MainLayoutNavigationBarLink(
+            label: item.label,
+            location: item.location,
+            icon: item.icon,
+          ),
+        )
+        .toList();
+  }
+}
+
+class MainLayoutNavigationBarLink extends StatelessWidget {
+  const MainLayoutNavigationBarLink({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.location,
+  });
+
+  final IconData icon;
+  final String label;
+  final String location;
+
+  @override
+  Widget build(BuildContext context) {
+    final goRouter = GoRouterState.of(context);
+    final goRouterCurrentPath = goRouter.uri.path;
+
+    return TextButton(
+      onPressed: () => goRouterCurrentPath == location ? null : context.push(location),
+      style: TextButton.styleFrom(padding: const EdgeInsets.all(10), shape: const CircleBorder()),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 2.5,
+        children: [_getIconWidget(), _getLabelWidget()],
+      ),
+    );
+  }
+
+  Icon _getIconWidget() {
+    return Icon(icon);
+  }
+
+  Text _getLabelWidget() {
+    return Text(label, style: defaultFont(fontSize: 7.5, fontWeight: FontWeight.bold));
+  }
+}
+
+class _NavigationBarItem {
+  const _NavigationBarItem({required this.icon, required this.label, required this.location});
+
+  final IconData icon;
+  final String label;
+  final String location;
+}
