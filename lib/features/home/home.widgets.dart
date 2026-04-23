@@ -1,61 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izpi_exchange/features/home/home.actions.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
 
-class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
-  const HomeHeader({super.key});
+class HomeProductsLoadingState extends StatelessWidget {
+  const HomeProductsLoadingState({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
-        child: Row(children: [_getText(), _getSpacer(), _getBalanceChip()]),
+    return Center(
+      child: Text(
+        'Cargando la lista de productos...',
+        style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class HomeProductsEmptyState extends StatelessWidget {
+  const HomeProductsEmptyState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'La lista de productos está vacía...',
+        style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class HomeProductItem extends StatelessWidget {
+  const HomeProductItem({super.key, required this.product});
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => context.push('/product/${product.id}'),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 5,
+            children: [_getPriceWidget(), _getNameWidget()],
+          ),
+        ),
       ),
     );
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  Widget _getBalanceChip() {
-    return HomeHeaderBalanceChip(balance: '100');
-  }
-
-  Spacer _getSpacer() {
-    return const Spacer();
-  }
-
-  Text _getText() {
-    return Text('IzpiExchange', style: defaultFont(fontSize: 25, fontWeight: FontWeight.bold));
-  }
-}
-
-class HomeHeaderBalanceChip extends StatelessWidget {
-  const HomeHeaderBalanceChip({super.key, required this.balance});
-
-  final String balance;
-
-  @override
-  Widget build(BuildContext context) {
+  Container _getPriceWidget() {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
         color: Colors.grey.shade200,
       ),
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      child: Row(children: [_getIcon(), _getSeparator(), _getBalance()]),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.paid_rounded, size: 15),
+            const SizedBox(width: 5),
+            Text(
+              product.price.toString(),
+              style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Text _getBalance() {
-    return Text(balance, style: defaultFont(fontSize: 12.5, fontWeight: FontWeight.bold));
-  }
-
-  Icon _getIcon() {
-    return const Icon(Icons.account_balance, size: 15);
-  }
-
-  SizedBox _getSeparator() {
-    return const SizedBox(width: 7.5);
+  Text _getNameWidget() {
+    return Text(
+      product.name,
+      overflow: TextOverflow.ellipsis,
+      style: defaultFont(fontSize: 17.5, fontWeight: FontWeight.bold),
+    );
   }
 }
