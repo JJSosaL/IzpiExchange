@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UpgradeRequiredTitle extends StatelessWidget {
   const UpgradeRequiredTitle({super.key});
@@ -18,6 +20,24 @@ class UpgradeRequiredDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Se ha detectado una nueva versión disponible de la aplicación');
+    return Text('Se ha detectado una nueva versión disponible de la aplicación.');
+  }
+}
+
+class UpgradeRequiredButton extends StatelessWidget {
+  const UpgradeRequiredButton({super.key, required this.domain});
+
+  final String domain;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: SharedFilledButton(content: 'Descargar Actualización', onPressed: _handleOnPressed),
+    );
+  }
+
+  Future<void> _handleOnPressed() async {
+    await launchUrl(Uri.https(domain), mode: LaunchMode.externalApplication);
   }
 }

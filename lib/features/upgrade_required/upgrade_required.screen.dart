@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/upgrade_required/upgrade_required.widgets.dart';
 
 class UpgradeRequiredPage extends StatelessWidget {
-  const UpgradeRequiredPage({super.key});
+  const UpgradeRequiredPage({super.key, required this.domain});
+
+  final String domain;
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +16,15 @@ class UpgradeRequiredPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
-            children: [_getTitleWidget(), _getDescriptionWidget()],
+            children: [_getTitleWidget(), _getDescriptionWidget(), _getButtonWidget()],
           ),
         ),
       ),
     );
+  }
+
+  Widget _getButtonWidget() {
+    return UpgradeRequiredButton(domain: domain);
   }
 
   Widget _getDescriptionWidget() {
