@@ -8,6 +8,9 @@ formatter:
 linter:
     rules:
         avoid_print: true
+        avoid_final_parameters: true
+
+        prefer_const_declarations: true
         prefer_single_quotes: true
 
         sort_child_properties_last: true
