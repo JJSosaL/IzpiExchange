@@ -1,9 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
-import 'package:izpi_exchange/core/auth/auth.constants.dart';
-import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
 import 'package:izpi_exchange/features/auth/index/index.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.screen.dart';
@@ -11,41 +10,29 @@ import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
 import 'package:izpi_exchange/features/upgrade_required/upgrade_required.screen.dart';
+import 'package:izpi_exchange/services/gateway.dart';
+import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+final logger = Logger();
 
 Future<bool> shouldUpgradeVersion() async {
   final packageInfo = await PackageInfo.fromPlatform();
   final packageInfoVersion = packageInfo.version;
 
-  final requestUri = createRequestUri('check-version');
+  final requestUri = createRequestUri('api/check-version');
   final requestBody = {'version': packageInfoVersion};
 
   final response = await post(requestUri, body: requestBody);
-  final responseBody = jsonDecode(response.body);
+  final responseData = jsonDecode(response.body);
 
-  final shouldUpgrade = bool.parse(responseBody['shouldUpgrade']);
+  final shouldUpgrade = responseData['shouldUpgrade'];
 
   return shouldUpgrade;
 }
 
 final router = GoRouter(
   initialLocation: '/',
-  redirect: (context, state) async {
-    final accessToken = await flutterSecureStorage.read(key: accessTokenKey);
-
-    final hasAccessToken = accessToken != null;
-    final isAuthenticating = state.matchedLocation.startsWith('/auth/');
-
-    if (!hasAccessToken && !isAuthenticating) {
-      return '/auth';
-    }
-
-    if (hasAccessToken && isAuthenticating) {
-      return '/';
-    }
-
-    return null;
-  },
   routes: [
     GoRoute(builder: (_, _) => const HomePage(), path: '/'),
     GoRoute(builder: (_, _) => const AuthPage(), path: '/auth'),
@@ -57,15 +44,6 @@ final router = GoRouter(
 
         return VerifyOtpPage(action: action);
       },
-      redirect: (context, state) {
-        final action = state.pathParameters['action'];
-
-        if (action == null || action.isEmpty) {
-          return '/auth';
-        }
-
-        return null;
-      },
       path: '/auth/verify_otp/:action',
     ),
   ],
@@ -74,38 +52,49 @@ final router = GoRouter(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  const domain = 'izpiexchange.fancystudio.xyz';
   final shouldUpgrade = await shouldUpgradeVersion();
 
-  runApp(IzpiExchangeApp(domain: domain, shouldUpgrade: shouldUpgrade));
+  await GatewayService().init();
+
+  runApp(IzpiExchangeApp(shouldUpgrade: shouldUpgrade));
 }
 
-class IzpiExchangeApp extends StatelessWidget {
-  const IzpiExchangeApp({super.key, required this.domain, required this.shouldUpgrade});
+class IzpiExchangeApp extends StatefulWidget {
+  const IzpiExchangeApp({super.key, required this.shouldUpgrade});
 
-  final String domain;
   final bool shouldUpgrade;
-  final String title = 'IzpiExchange';
+
+  @override
+  State<IzpiExchangeApp> createState() => _IzpiExchangeAppState();
+}
+
+class _IzpiExchangeAppState extends State<IzpiExchangeApp> {
+  late final StreamSubscription authSubscription;
 
   @override
   Widget build(BuildContext context) {
-    if (shouldUpgrade) {
-      return _createUpgradeRequiredApp();
+    if (widget.shouldUpgrade) {
+      return MaterialApp(home: UpgradeRequiredPage(domain: 'izpiexchange.fancystudio.xyz'));
     }
 
-    return _createGoRouterApp();
+    return MaterialApp.router(routerConfig: router, theme: _getThemeData());
   }
 
-  MaterialApp _createUpgradeRequiredApp() {
-    return MaterialApp(
-      home: UpgradeRequiredPage(domain: domain),
-      theme: _getThemeData(),
-      title: title,
-    );
+  @override
+  void dispose() {
+    authSubscription.cancel();
+    super.dispose();
   }
 
-  MaterialApp _createGoRouterApp() {
-    return MaterialApp.router(routerConfig: router, theme: _getThemeData(), title: title);
+  @override
+  void initState() {
+    super.initState();
+
+    authSubscription = GatewayService().authFailedStream.listen((state) {
+      if (state == AuthState.failed) {
+        router.go('/auth');
+      }
+    });
   }
 
   ThemeData _getThemeData() {
