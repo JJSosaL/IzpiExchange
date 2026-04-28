@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
-import 'package:izpi_exchange/core/auth/auth.constants.dart';
-import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
+import 'package:izpi_exchange/core/storage/storage.constants.dart';
 
 Future<List<Product>> getPublishedProducts(BuildContext context) async {
-  final authorization = await flutterSecureStorage.read(key: accessTokenKey);
+  final accessToken = await secureStorage.read(key: secureStorageAccessTokenKey);
 
-  if (authorization == null) {
+  if (accessToken == null) {
     if (context.mounted) {
       context.go('/auth');
     }
@@ -18,7 +17,7 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
   }
 
   final requestUri = createRequestUri('api/products');
-  final requestHeaders = {'authorization': authorization};
+  final requestHeaders = {'authorization': accessToken};
 
   final response = await get(requestUri, headers: requestHeaders);
   final responseStatus = response.statusCode;

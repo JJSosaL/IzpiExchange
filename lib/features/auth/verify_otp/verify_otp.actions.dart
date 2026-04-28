@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
-import 'package:izpi_exchange/core/auth/auth.constants.dart';
-import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
 import 'package:izpi_exchange/core/rest/rest.response.dart';
+import 'package:izpi_exchange/core/storage/storage.constants.dart';
+import 'package:izpi_exchange/services/gateway.dart';
 
 Future<RESTResponse> createVerifySignUpOtpRequest(
   String otpCode,
@@ -25,11 +25,10 @@ Future<RESTResponse> createVerifySignUpOtpRequest(
     final responseBody = json.decode(response.body);
     final responseAccessToken = responseBody['accessToken'];
 
-    // Guardar el token de acceso en la aplicación.
-    await flutterSecureStorage.write(key: accessTokenKey, value: responseAccessToken);
+    await secureStorage.write(key: secureStorageAccessTokenKey, value: responseAccessToken);
+    await GatewayService().reconnect();
 
     if (context.mounted) {
-      // Utilizar 'go' para eliminar el historial de navegación.
       context.go('/');
     }
 

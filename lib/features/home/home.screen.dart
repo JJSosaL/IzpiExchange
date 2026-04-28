@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:izpi_exchange/core/auth/auth.constants.dart';
-import 'package:izpi_exchange/core/auth/auth.storage.dart';
-import 'package:izpi_exchange/core/rest/rest.functions.dart';
 import 'package:izpi_exchange/features/home/home.actions.dart';
 import 'package:izpi_exchange/features/home/home.widgets.dart';
+import 'package:izpi_exchange/services/gateway.dart';
 import 'package:izpi_exchange/shared/layouts/main.layout.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,8 +13,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoading = true;
-  late io.Socket socket;
-  List products = [];
+  List<Product> products = [];
+
+  final gateway = GatewayService();
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    if (socket.connected) {
-      socket.dispose();
-    }
-
+    gateway.off('PRODUCT_PUBLISHED');
     super.dispose();
   }
 
@@ -71,28 +65,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _initializeSocket() async {
-    final authorization = await flutterSecureStorage.read(key: accessTokenKey);
-
-    if (authorization == null) {
+    gateway.on('PRODUCT_PUBLISHED', (data) {
       if (mounted) {
-        return context.go('auth');
+        setState(() {
+          products.add(Product.fromJson(data));
+        });
       }
-    }
-
-    socket = io.io(
-      createRequestUri('').toString(),
-      io.OptionBuilder().setTransports(['websocket']).setAuth({
-        'accessToken': authorization,
-      }).build(),
-    );
-
-    socket.onConnect((_) => print('Aplicación conectada al gateway'));
-    socket.onDisconnect((_) => print('Aplicación desconectada del gateway'));
-
-    socket.on('PRODUCT_CREATED', (data) {
-      if (!mounted) return;
-
-      setState(() => products.add(Product.fromJson(data)));
     });
   }
 }
