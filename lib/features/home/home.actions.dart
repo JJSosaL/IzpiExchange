@@ -17,7 +17,7 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
     return [];
   }
 
-  final requestUri = createRequestUri('api/products/published');
+  final requestUri = createRequestUri('api/products');
   final requestHeaders = {'authorization': authorization};
 
   final response = await get(requestUri, headers: requestHeaders);
