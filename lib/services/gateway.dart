@@ -19,7 +19,7 @@ class GatewayService {
   bool _initialized = false;
   bool _connected = false;
 
-  Stream<AuthState> get authFailedStream => _authController.stream;
+  Stream<AuthState> get authStream => _authController.stream;
 
   void dispose() {
     if (_initialized) {
@@ -55,6 +55,8 @@ class GatewayService {
 
     _socket.onConnect((_) {
       logger.i('Conectado al Gateway...');
+
+      _authController.add(AuthState.authenticated);
       _connected = true;
     });
 

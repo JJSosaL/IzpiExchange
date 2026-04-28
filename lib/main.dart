@@ -32,7 +32,6 @@ Future<bool> shouldUpgradeVersion() async {
 }
 
 final router = GoRouter(
-  initialLocation: '/',
   routes: [
     GoRoute(builder: (_, _) => const HomePage(), path: '/'),
     GoRoute(builder: (_, _) => const AuthPage(), path: '/auth'),
@@ -90,9 +89,16 @@ class _IzpiExchangeAppState extends State<IzpiExchangeApp> {
   void initState() {
     super.initState();
 
-    authSubscription = GatewayService().authFailedStream.listen((state) {
-      if (state == AuthState.failed) {
-        router.go('/auth');
+    authSubscription = GatewayService().authStream.listen((state) {
+      switch (state) {
+        case AuthState.failed:
+          router.go('/auth');
+
+          break;
+        case AuthState.authenticated:
+          router.go('/');
+
+          break;
       }
     });
   }
