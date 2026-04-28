@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart';
 import 'package:izpi_exchange/core/auth/auth.constants.dart';
 import 'package:izpi_exchange/core/auth/auth.storage.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
@@ -15,15 +17,15 @@ Future<bool> shouldUpgradeVersion() async {
   final packageInfo = await PackageInfo.fromPlatform();
   final packageInfoVersion = packageInfo.version;
 
-  final requestUri = createRequestUri('check');
+  final requestUri = createRequestUri('check-version');
   final requestBody = {'version': packageInfoVersion};
 
-  //final response = await post(requestUri, body: requestBody);
-  //final responseBody = jsonDecode(response.body);
+  final response = await post(requestUri, body: requestBody);
+  final responseBody = jsonDecode(response.body);
 
-  //final shouldUpgrade = bool.parse(responseBody['shouldUpgrade']);
+  final shouldUpgrade = bool.parse(responseBody['shouldUpgrade']);
 
-  return true;
+  return shouldUpgrade;
 }
 
 final router = GoRouter(
