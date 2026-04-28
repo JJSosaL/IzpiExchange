@@ -22,6 +22,7 @@ dependencies:
     package_info_plus: ^9.0.1
     url_launcher: ^6.3.2
     flutter_launcher_icons: ^0.14.4
+    logger: ^2.7.0
 
 dev_dependencies:
     flutter_test:
