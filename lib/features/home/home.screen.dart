@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     socket = io.io(
-      createRequestUri('products').toString(),
+      createRequestUri('').toString(),
       io.OptionBuilder().setTransports(['websocket']).setAuth({
         'accessToken': authorization,
       }).build(),
