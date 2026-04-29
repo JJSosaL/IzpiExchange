@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
+import 'package:izpi_exchange/core/rest/rest.constants.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
 import 'package:izpi_exchange/features/auth/index/index.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.screen.dart';
@@ -50,6 +51,8 @@ final router = GoRouter(
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  logger.i('Utilizando el dominio: $baseUriDomain');
 
   final shouldUpgrade = await shouldUpgradeVersion();
 
