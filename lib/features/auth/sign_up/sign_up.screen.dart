@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.actions.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.widgets.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -25,11 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
-            children: [
-              const SignUpTitle(),
-              SignUpEmailInput(controller: emailController),
-              SignUpSubmitButton(onPressed: isLoading ? null : _handleSubmit),
-            ],
+            children: [_getTitleWidget(), _getTextInputWidget(), _getButtonWidget()],
           ),
         ),
       ),
@@ -43,18 +39,37 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  SnackBar _buildSignUpSnackBar(String errorMessage) {
+  SnackBar _buildSnackBar(String errorMessage) {
     return SnackBar(
-      content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      content: Text(
+        errorMessage,
+        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
       persist: false,
       showCloseIcon: true,
     );
   }
 
-  Future<void> _handleSubmit() async {
-    if (isLoading) return;
+  Widget _getButtonWidget() {
+    return SignUpSubmitButton(onPressed: isLoading ? null : _submitData);
+  }
 
-    setState(() => isLoading = true);
+  Widget _getTextInputWidget() {
+    return SignUpEmailInput(controller: emailController);
+  }
+
+  Widget _getTitleWidget() {
+    return const SignUpTitle();
+  }
+
+  Future<void> _submitData() async {
+    if (isLoading) {
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
 
     try {
       final email = emailController.text;
@@ -62,11 +77,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
       if (!response.success) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildSignUpSnackBar(response.message));
+          ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(response.message));
         }
       }
     } finally {
-      setState(() => isLoading = false);
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

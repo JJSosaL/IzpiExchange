@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
 import 'package:izpi_exchange/shared/widgets/forms/text_input.dart';
 
@@ -8,7 +8,7 @@ class SignUpTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Crear Cuenta', style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold));
+    return Text('Crear Cuenta', style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold));
   }
 }
 
@@ -19,7 +19,7 @@ class SignUpEmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextInputWidget(controller: controller, label: 'Correo Electrónico');
+    return SharedTextInput(controller: controller, label: 'Correo Electrónico');
   }
 }
 

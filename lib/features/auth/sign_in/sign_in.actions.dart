@@ -20,7 +20,7 @@ Future<RESTResponse> createSignInRequest(String email, BuildContext context) asy
 
     return RESTResponse(message: 'OK', success: true);
   } else {
-    final responseBody = json.decode(response.body);
+    final responseBody = jsonDecode(response.body);
     final responseMessage = responseBody['message'];
 
     return RESTResponse(message: responseMessage, success: false);

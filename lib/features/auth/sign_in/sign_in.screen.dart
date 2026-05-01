@@ -62,7 +62,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> _submitData() async {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
 
     setState(() {
       isLoading = true;
