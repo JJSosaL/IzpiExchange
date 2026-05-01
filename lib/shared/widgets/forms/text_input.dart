@@ -14,7 +14,7 @@ class SharedTextInput extends StatelessWidget {
       child: TextField(
         controller: controller,
         decoration: _getInputDecoration(),
-        style: defaultFontStyle(color: Colors.black),
+        style: defaultFontStyle(),
       ),
     );
   }
@@ -30,11 +30,11 @@ class SharedTextInput extends StatelessWidget {
   OutlineInputBorder _getInputDecorationBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(999),
-      borderSide: const BorderSide(color: Colors.black, width: 1),
+      borderSide: const BorderSide(width: 1),
     );
   }
 
   TextStyle _getLabelStyle() {
-    return defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.normal);
+    return defaultFontStyle(fontSize: 15, fontWeight: FontWeight.normal);
   }
 }
