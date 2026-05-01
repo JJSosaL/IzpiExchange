@@ -9,6 +9,7 @@ import 'package:izpi_exchange/features/auth/index/index.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.screen.dart';
+import 'package:izpi_exchange/features/chats/chats.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
 import 'package:izpi_exchange/features/upgrade_required/upgrade_required.screen.dart';
 import 'package:izpi_exchange/services/gateway.dart';
@@ -46,6 +47,7 @@ final router = GoRouter(
       },
       path: '/auth/verify_otp/:action',
     ),
+    GoRoute(builder: (_, _) => const ChatsPage(), path: '/chats'),
   ],
 );
 
