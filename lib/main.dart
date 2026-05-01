@@ -78,7 +78,10 @@ class _IzpiExchangeAppState extends State<IzpiExchangeApp> {
   @override
   Widget build(BuildContext context) {
     if (widget.shouldUpgrade) {
-      return MaterialApp(home: UpgradeRequiredPage(domain: 'izpiexchange.fancystudio.xyz'));
+      return MaterialApp(
+        home: UpgradeRequiredPage(domain: 'izpiexchange.fancystudio.xyz'),
+        theme: _getThemeData(),
+      );
     }
 
     return MaterialApp.router(routerConfig: router, theme: _getThemeData());
