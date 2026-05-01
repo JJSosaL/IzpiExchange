@@ -19,7 +19,7 @@ class SharedAlert extends StatelessWidget {
   }
 
   BoxDecoration _getDecoration() {
-    return BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.cyan.shade100);
+    return BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.green.shade100);
   }
 
   Widget _getIconWidget() {
