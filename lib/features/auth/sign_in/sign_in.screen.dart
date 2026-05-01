@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.actions.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.widgets.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -25,11 +25,7 @@ class _SignInPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
-            children: [
-              const SignInTitle(),
-              SignInEmailInput(controller: emailController),
-              SignInSubmitButton(onPressed: isLoading ? null : _handleSubmit),
-            ],
+            children: [_getTitleWidget(), _getTextInputWidget(), _getButtonWidget()],
           ),
         ),
       ),
@@ -39,22 +35,38 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void dispose() {
     emailController.dispose();
-
     super.dispose();
   }
 
-  SnackBar _buildSignInSnackBar(String errorMessage) {
+  SnackBar _buildSnackBar(String errorMessage) {
     return SnackBar(
-      content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      content: Text(
+        errorMessage,
+        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
       persist: false,
       showCloseIcon: true,
     );
   }
 
-  Future<void> _handleSubmit() async {
+  Widget _getButtonWidget() {
+    return SignInSubmitButton(onPressed: isLoading ? null : _submitData);
+  }
+
+  Widget _getTextInputWidget() {
+    return SignInEmailInput(controller: emailController);
+  }
+
+  Widget _getTitleWidget() {
+    return const SignInTitle();
+  }
+
+  Future<void> _submitData() async {
     if (isLoading) return;
 
-    setState(() => isLoading = true);
+    setState(() {
+      isLoading = true;
+    });
 
     try {
       final email = emailController.text;
@@ -62,11 +74,13 @@ class _SignInPageState extends State<SignInPage> {
 
       if (!response.success) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildSignInSnackBar(response.message));
+          ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(response.message));
         }
       }
     } finally {
-      setState(() => isLoading = false);
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

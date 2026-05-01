@@ -7,17 +7,14 @@ import 'package:izpi_exchange/core/rest/rest.response.dart';
 
 Future<RESTResponse> createSignInRequest(String email, BuildContext context) async {
   final requestUri = createRequestUri('api/auth/sign-in');
-  final requestBody = {'email': email};
 
-  final response = await post(
-    requestUri,
-    body: jsonEncode(requestBody),
-    headers: {'content-type': 'application/json'},
-  );
+  final requestBody = jsonEncode({'email': email});
+  final requestHeaders = {'content-type': 'application/json'};
+
+  final response = await post(requestUri, body: requestBody, headers: requestHeaders);
 
   if (response.statusCode == 202) {
     if (context.mounted) {
-      // Utilizar 'push' para utilizar el historial de navegación.
       context.push('/auth/verify_otp/sign_in');
     }
 
