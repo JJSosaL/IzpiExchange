@@ -1,7 +1,7 @@
-final String baseUriDomainFromEnv = String.fromEnvironment(
-  'API_DOMAIN',
-  defaultValue: 'izpiexchange.fancystudio.xyz',
-);
-final String baseUriDomain = baseUriDomainFromEnv.isEmpty ? 'localhost:3001' : baseUriDomainFromEnv;
+import 'package:flutter/foundation.dart';
 
-final bool useHttps = bool.fromEnvironment('USE_HTTPS', defaultValue: true);
+final String baseUriDomain = kDebugMode
+    ? 'localhost:3001'
+    : String.fromEnvironment('API_DOMAIN', defaultValue: 'izpiexchange.fancystudio.xyz');
+
+final bool useHttps = kDebugMode ? false : bool.fromEnvironment('USE_HTTPS', defaultValue: true);
