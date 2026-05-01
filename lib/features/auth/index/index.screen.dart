@@ -22,14 +22,14 @@ class AuthPage extends StatelessWidget {
   }
 
   Widget _getSignInButtonWidget() {
-    return AuthSignInButton();
+    return const AuthSignInButton();
   }
 
   Widget _getSignUpButtonWidget() {
-    return AuthSignUpButton();
+    return const AuthSignUpButton();
   }
 
   Widget _getTitleWidget() {
-    return AuthTitle();
+    return const AuthTitle();
   }
 }
