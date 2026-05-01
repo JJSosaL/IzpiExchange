@@ -21,6 +21,7 @@ class SharedTextInput extends StatelessWidget {
         controller: controller,
         decoration: _getInputDecoration(),
         keyboardType: keyboardType,
+        maxLines: _getMaxLines(),
         style: defaultFontStyle(),
       ),
     );
@@ -36,12 +37,16 @@ class SharedTextInput extends StatelessWidget {
 
   OutlineInputBorder _getInputDecorationBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(999),
+      borderRadius: BorderRadius.circular(15),
       borderSide: const BorderSide(width: 1),
     );
   }
 
   TextStyle _getLabelStyle() {
     return defaultFontStyle(fontSize: 15, fontWeight: FontWeight.normal);
+  }
+
+  int? _getMaxLines() {
+    return keyboardType == TextInputType.multiline ? null : 1;
   }
 }
