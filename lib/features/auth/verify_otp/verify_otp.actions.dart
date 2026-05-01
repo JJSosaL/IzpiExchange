@@ -13,15 +13,13 @@ Future<RESTResponse> createVerifySignUpOtpRequest(
   BuildContext context,
 ) async {
   final requestUri = createRequestUri('api/auth/verify-otp');
-  final requestBody = {'action': action, 'otpCode': otpCode};
 
-  final response = await post(
-    requestUri,
-    body: jsonEncode(requestBody),
-    headers: {'content-type': 'application/json'},
-  );
+  final requestBody = jsonEncode({'action': action, 'otpCode': otpCode});
+  final requestHeaders = {'content-type': 'application/json'};
 
-  if (response.statusCode == 201) {
+  final response = await post(requestUri, body: requestBody, headers: requestHeaders);
+
+  if (response.statusCode == 200) {
     final responseBody = json.decode(response.body);
     final responseAccessToken = responseBody['accessToken'];
 
@@ -34,7 +32,7 @@ Future<RESTResponse> createVerifySignUpOtpRequest(
 
     return RESTResponse(message: 'OK', success: true);
   } else {
-    final responseBody = json.decode(response.body);
+    final responseBody = jsonDecode(response.body);
     final responseMessage = responseBody['message'];
 
     return RESTResponse(message: responseMessage, success: false);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.actions.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.widgets.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({super.key, required this.action});
@@ -28,10 +28,10 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
             children: [
-              const VerifyOtpTitle(),
-              const VerifyOtpDescription(),
-              VerifyOtpCodeInput(controller: otpController),
-              VerifyOtpButton(onPressed: isLoading ? null : _handleSubmit),
+              _getTitleWidget(),
+              _getDescriptionWidget(),
+              _getTextInputWidget(),
+              _getButtonWidget(),
             ],
           ),
         ),
@@ -42,22 +42,44 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   @override
   void dispose() {
     otpController.dispose();
-
     super.dispose();
   }
 
-  SnackBar _buildVerifyOtpSnackBar(String errorMessage) {
+  SnackBar _buildSnackBar(String errorMessage) {
     return SnackBar(
-      content: Text(errorMessage, style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold)),
+      content: Text(
+        errorMessage,
+        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
       persist: false,
       showCloseIcon: true,
     );
   }
 
-  Future<void> _handleSubmit() async {
-    if (isLoading) return;
+  Widget _getButtonWidget() {
+    return VerifyOtpButton(onPressed: isLoading ? null : _submitData);
+  }
 
-    setState(() => isLoading = true);
+  Widget _getDescriptionWidget() {
+    return const VerifyOtpDescription();
+  }
+
+  Widget _getTextInputWidget() {
+    return VerifyOtpCodeInput(controller: otpController);
+  }
+
+  Widget _getTitleWidget() {
+    return const VerifyOtpTitle();
+  }
+
+  Future<void> _submitData() async {
+    if (isLoading) {
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
 
     try {
       final otpAction = widget.action.toUpperCase();
@@ -67,11 +89,13 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
 
       if (!response.success) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildVerifyOtpSnackBar(response.message));
+          ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(response.message));
         }
       }
     } finally {
-      setState(() => isLoading = false);
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

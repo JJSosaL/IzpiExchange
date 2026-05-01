@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
 import 'package:izpi_exchange/shared/widgets/forms/text_input.dart';
 
@@ -11,7 +10,7 @@ class VerifyOtpTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Verificar Identidad',
-      style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold),
+      style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -23,7 +22,11 @@ class VerifyOtpDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Introduce el código de 6 dígitos envíado a tu correo electrónico.',
-      style: defaultFont(fontSize: 15, fontWeight: FontWeight.normal),
+      style: defaultFontStyle(
+        color: Colors.grey.shade900,
+        fontSize: 15,
+        fontWeight: FontWeight.normal,
+      ),
     );
   }
 }
@@ -35,7 +38,7 @@ class VerifyOtpCodeInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextInputWidget(controller: controller, label: 'Código OTP');
+    return SharedTextInput(controller: controller, label: 'Código One-Time Password');
   }
 }
 
