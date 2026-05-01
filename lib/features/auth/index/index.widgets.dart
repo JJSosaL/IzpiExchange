@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
 import 'package:izpi_exchange/shared/widgets/buttons/outline_button.dart';
 
@@ -9,7 +9,7 @@ class AuthTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('¡Bienvenido!', style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold));
+    return Text('¡Bienvenido!', style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold));
   }
 }
 
@@ -22,7 +22,9 @@ class AuthSignInButton extends StatelessWidget {
       width: double.infinity,
       child: SharedOutlinedButton(
         content: 'Iniciar Sesión',
-        onPressed: () => context.push('/auth/sign_in'),
+        onPressed: () {
+          context.push('/auth/sign_in');
+        },
       ),
     );
   }
@@ -37,7 +39,9 @@ class AuthSignUpButton extends StatelessWidget {
       width: double.infinity,
       child: SharedFilledButton(
         content: 'Crear Cuenta',
-        onPressed: () => context.push('/auth/sign_up'),
+        onPressed: () {
+          context.push('/auth/sign_up');
+        },
       ),
     );
   }

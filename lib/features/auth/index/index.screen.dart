@@ -14,10 +14,22 @@ class AuthPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
-            children: const [AuthTitle(), AuthSignInButton(), AuthSignUpButton()],
+            children: [_getTitleWidget(), _getSignInButtonWidget(), _getSignUpButtonWidget()],
           ),
         ),
       ),
     );
+  }
+
+  Widget _getSignInButtonWidget() {
+    return AuthSignInButton();
+  }
+
+  Widget _getSignUpButtonWidget() {
+    return AuthSignUpButton();
+  }
+
+  Widget _getTitleWidget() {
+    return AuthTitle();
   }
 }
