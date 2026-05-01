@@ -35,7 +35,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
     emailController.dispose();
-
     super.dispose();
   }
 
