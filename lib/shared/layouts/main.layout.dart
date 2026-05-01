@@ -12,7 +12,7 @@ class MainLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MainLayoutAppBar(title: title),
-      body: body,
+      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 30), child: body),
       bottomNavigationBar: MainLayoutNavigationBar(),
     );
   }
@@ -61,8 +61,8 @@ class MainLayoutNavigationBar extends StatelessWidget {
     return [
       _NavigationBarItem(icon: Icons.home_rounded, label: 'Inicio', location: '/'),
       _NavigationBarItem(icon: Icons.inbox_rounded, label: 'Bandeja', location: '/inbox'),
-      _NavigationBarItem(icon: Icons.add_circle_rounded, label: 'Publicar', location: '/publish'),
-      _NavigationBarItem(icon: Icons.chat_rounded, label: 'Mensajes', location: '/chats'),
+      _NavigationBarItem(icon: Icons.add_circle_rounded, label: 'Crear', location: '/create'),
+      _NavigationBarItem(icon: Icons.chat_rounded, label: 'Chats', location: '/chats'),
       _NavigationBarItem(icon: Icons.account_circle_rounded, label: 'Cuenta', location: '/account'),
     ];
   }

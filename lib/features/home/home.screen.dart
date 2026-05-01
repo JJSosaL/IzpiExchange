@@ -19,10 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MainLayout(
-      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 30), child: _buildChild()),
-      title: 'Inicio',
-    );
+    return MainLayout(body: _buildChildWidget(), title: 'Inicio');
   }
 
   @override
@@ -39,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     _initializeSocket();
   }
 
-  Widget _buildChild() {
+  Widget _buildChildWidget() {
     if (isLoading) {
       return HomeProductsLoadingState();
     }
