@@ -25,7 +25,7 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
   switch (responseStatus) {
     case 200:
       {
-        final List responseBody = json.decode(response.body);
+        final List responseBody = jsonDecode(response.body);
         final responseData = responseBody
             .map((productJson) => Product.fromJson(productJson))
             .toList();
