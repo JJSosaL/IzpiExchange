@@ -13,7 +13,12 @@ class SharedAlert extends StatelessWidget {
       decoration: _getDecoration(),
       child: Padding(
         padding: const EdgeInsets.all(15),
-        child: Row(spacing: 7.5, children: [_getIconWidget(), _getTextWidget()]),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 7.5,
+          children: [_getIconWidget(), _getTextWidget()],
+        ),
       ),
     );
   }
@@ -23,7 +28,7 @@ class SharedAlert extends StatelessWidget {
   }
 
   Widget _getIconWidget() {
-    return Icon(icon, size: 15);
+    return Icon(icon, size: 17.5);
   }
 
   Widget _getTextWidget() {
