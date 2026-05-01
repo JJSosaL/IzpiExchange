@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     try {
-      final email = emailController.text;
+      final email = emailController.text.trim();
       final response = await createSignUpRequest(email, context);
 
       if (!response.success) {

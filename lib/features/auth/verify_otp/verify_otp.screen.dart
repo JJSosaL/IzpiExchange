@@ -75,8 +75,8 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
     });
 
     try {
-      final otpAction = widget.action.toUpperCase();
-      final otpCode = otpController.text;
+      final otpAction = widget.action.trim().toUpperCase();
+      final otpCode = otpController.text.trim();
 
       final response = await createVerifySignUpOtpRequest(otpCode, otpAction, context);
 
