@@ -21,7 +21,7 @@ class VerifyOtpDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Introduce el código de 6 dígitos envíado a tu correo electrónico.',
+      'Introduce el código de 6 dígitos que hemos enviado a tu correo electrónico.',
       style: defaultFontStyle(
         color: Colors.grey.shade900,
         fontSize: 15,

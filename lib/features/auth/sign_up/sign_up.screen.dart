@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.actions.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.widgets.dart';
-import 'package:izpi_exchange/shared/styles/font.style.dart';
+import 'package:izpi_exchange/shared/widgets/overlay/snack_bar.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -39,14 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   SnackBar _buildSnackBar(String errorMessage) {
-    return SnackBar(
-      content: Text(
-        errorMessage,
-        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
-      ),
-      persist: false,
-      showCloseIcon: true,
-    );
+    return SharedSnackBar.build(errorMessage, variant: SnackBarVariant.error);
   }
 
   Widget _getButtonWidget() {
