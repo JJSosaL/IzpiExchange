@@ -61,7 +61,11 @@ class MainLayoutNavigationBar extends StatelessWidget {
     return [
       _NavigationBarItem(icon: Icons.home_rounded, label: 'Inicio', location: '/'),
       _NavigationBarItem(icon: Icons.inbox_rounded, label: 'Bandeja', location: '/inbox'),
-      _NavigationBarItem(icon: Icons.add_circle_rounded, label: 'Crear', location: '/create'),
+      _NavigationBarItem(
+        icon: Icons.add_circle_rounded,
+        label: 'Crear',
+        location: '/products/create',
+      ),
       _NavigationBarItem(icon: Icons.chat_rounded, label: 'Chats', location: '/chats'),
       _NavigationBarItem(icon: Icons.account_circle_rounded, label: 'Cuenta', location: '/account'),
     ];

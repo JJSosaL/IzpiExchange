@@ -9,7 +9,7 @@ class ChatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MainLayout(
       body: SharedAlert(content: 'Característica en Desarrollo', icon: Icons.build_circle),
-      title: 'Chats',
+      title: 'Mis Chats',
     );
   }
 }

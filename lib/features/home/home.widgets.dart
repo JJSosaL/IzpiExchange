@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izpi_exchange/features/home/home.actions.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class HomeProductsLoadingState extends StatelessWidget {
   const HomeProductsLoadingState({super.key});
@@ -11,7 +11,7 @@ class HomeProductsLoadingState extends StatelessWidget {
     return Center(
       child: Text(
         'Cargando la lista de productos...',
-        style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -25,7 +25,7 @@ class HomeProductsEmptyState extends StatelessWidget {
     return Center(
       child: Text(
         'La lista de productos está vacía...',
-        style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -72,7 +72,7 @@ class HomeProductItem extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               product.price.toString(),
-              style: defaultFont(fontSize: 15, fontWeight: FontWeight.bold),
+              style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -84,7 +84,7 @@ class HomeProductItem extends StatelessWidget {
     return Text(
       product.name,
       overflow: TextOverflow.ellipsis,
-      style: defaultFont(fontSize: 17.5, fontWeight: FontWeight.bold),
+      style: defaultFontStyle(fontSize: 17.5, fontWeight: FontWeight.bold),
     );
   }
 }

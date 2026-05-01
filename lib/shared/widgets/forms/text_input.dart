@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SharedTextInput extends StatelessWidget {
-  const SharedTextInput({super.key, required this.controller, required this.label});
+  const SharedTextInput({
+    super.key,
+    required this.controller,
+    required this.label,
+    required this.keyboardType,
+  });
 
   final TextEditingController controller;
   final String label;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +20,7 @@ class SharedTextInput extends StatelessWidget {
       child: TextField(
         controller: controller,
         decoration: _getInputDecoration(),
+        keyboardType: keyboardType,
         style: defaultFontStyle(),
       ),
     );
