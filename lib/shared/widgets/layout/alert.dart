@@ -36,7 +36,7 @@ class SharedAlert extends StatelessWidget {
   }
 
   Widget _getIconWidget() {
-    return Icon(icon, size: 17.5);
+    return Icon(icon, size: 15);
   }
 
   Widget _getTextWidget() {
@@ -44,7 +44,7 @@ class SharedAlert extends StatelessWidget {
       child: Text(
         content,
         maxLines: null,
-        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        style: defaultFontStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
       ),
     );
   }
