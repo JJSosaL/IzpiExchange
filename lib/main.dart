@@ -97,13 +97,17 @@ class _IzpiExchangeAppState extends State<IzpiExchangeApp> {
     authSubscription = GatewayService().authStream.listen((state) {
       switch (state) {
         case AuthState.failed:
-          router.go('/auth');
+          {
+            router.go('/auth');
 
-          break;
+            break;
+          }
         case AuthState.authenticated:
-          router.go('/');
+          {
+            router.go('/');
 
-          break;
+            break;
+          }
       }
     });
   }
