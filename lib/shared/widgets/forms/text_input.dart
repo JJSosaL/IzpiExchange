@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SharedTextInput extends StatelessWidget {
@@ -20,6 +21,7 @@ class SharedTextInput extends StatelessWidget {
       child: TextField(
         controller: controller,
         decoration: _getInputDecoration(),
+        inputFormatters: _getInputFormatters(),
         keyboardType: keyboardType,
         maxLines: _getMaxLines(),
         style: defaultFontStyle(),
@@ -40,6 +42,16 @@ class SharedTextInput extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       borderSide: const BorderSide(width: 1),
     );
+  }
+
+  List<TextInputFormatter> _getInputFormatters() {
+    final List<TextInputFormatter> inputFormatters = [];
+
+    if (keyboardType == TextInputType.number) {
+      inputFormatters.add(FilteringTextInputFormatter.digitsOnly);
+    }
+
+    return inputFormatters;
   }
 
   TextStyle _getLabelStyle() {
