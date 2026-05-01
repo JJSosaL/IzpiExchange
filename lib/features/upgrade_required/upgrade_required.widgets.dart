@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 import 'package:izpi_exchange/shared/widgets/buttons/filled_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,7 +10,7 @@ class UpgradeRequiredTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Actualización Requerida',
-      style: defaultFont(fontSize: 30, fontWeight: FontWeight.bold),
+      style: defaultFontStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -20,7 +20,10 @@ class UpgradeRequiredDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Se ha detectado una nueva versión disponible de la aplicación.');
+    return Text(
+      'Se ha detectado una nueva versión disponible de la aplicación.',
+      style: defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.normal),
+    );
   }
 }
 

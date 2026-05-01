@@ -36,7 +36,7 @@ class MainLayoutAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(100);
 
-  Text _getTitleWidget() {
+  Widget _getTitleWidget() {
     return Text(
       title,
       style: defaultFontStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
@@ -70,7 +70,7 @@ class MainLayoutNavigationBar extends StatelessWidget {
     ];
   }
 
-  List<MainLayoutNavigationBarLink> _getNavigationBarLinkWidgets() {
+  List<Widget> _getNavigationBarLinkWidgets() {
     return _getNavigationBarItems()
         .map(
           (item) => MainLayoutNavigationBarLink(
@@ -112,11 +112,11 @@ class MainLayoutNavigationBarLink extends StatelessWidget {
     );
   }
 
-  Icon _getIconWidget() {
+  Widget _getIconWidget() {
     return Icon(icon);
   }
 
-  Text _getLabelWidget() {
+  Widget _getLabelWidget() {
     return Text(
       label,
       style: defaultFontStyle(color: Colors.black, fontSize: 7.5, fontWeight: FontWeight.bold),
