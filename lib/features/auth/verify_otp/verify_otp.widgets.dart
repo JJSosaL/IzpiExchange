@@ -38,7 +38,11 @@ class VerifyOtpCodeInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SharedTextInput(controller: controller, label: 'Código One-Time Password');
+    return SharedTextInput(
+      controller: controller,
+      keyboardType: TextInputType.number,
+      label: 'Código One-Time Password',
+    );
   }
 }
 

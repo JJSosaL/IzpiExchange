@@ -5,13 +5,13 @@ class SharedTextInput extends StatelessWidget {
   const SharedTextInput({
     super.key,
     required this.controller,
-    required this.label,
     required this.keyboardType,
+    required this.label,
   });
 
   final TextEditingController controller;
-  final String label;
   final TextInputType keyboardType;
+  final String label;
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,11 @@ class SignUpEmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SharedTextInput(controller: controller, label: 'Correo Electrónico');
+    return SharedTextInput(
+      controller: controller,
+      keyboardType: TextInputType.emailAddress,
+      label: 'Correo Electrónico',
+    );
   }
 }
 
