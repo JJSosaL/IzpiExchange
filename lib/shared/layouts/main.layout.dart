@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({super.key, required this.body, required this.title});
@@ -37,7 +37,10 @@ class MainLayoutAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(100);
 
   Text _getTitleWidget() {
-    return Text(title, style: defaultFont(fontSize: 25, fontWeight: FontWeight.bold));
+    return Text(
+      title,
+      style: defaultFontStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+    );
   }
 }
 
@@ -114,7 +117,10 @@ class MainLayoutNavigationBarLink extends StatelessWidget {
   }
 
   Text _getLabelWidget() {
-    return Text(label, style: defaultFont(fontSize: 7.5, fontWeight: FontWeight.bold));
+    return Text(
+      label,
+      style: defaultFontStyle(color: Colors.black, fontSize: 7.5, fontWeight: FontWeight.bold),
+    );
   }
 }
 

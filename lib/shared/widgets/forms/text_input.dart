@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/shared/styles/font.style.dart';
 
-class TextInputWidget extends StatelessWidget {
-  const TextInputWidget({super.key, required this.controller, required this.label});
+class SharedTextInput extends StatelessWidget {
+  const SharedTextInput({super.key, required this.controller, required this.label});
 
   final TextEditingController controller;
   final String label;

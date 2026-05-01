@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SharedFilledButton extends StatelessWidget {
   const SharedFilledButton({super.key, required this.content, required this.onPressed});
@@ -11,7 +11,10 @@ class SharedFilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FilledButton(
       onPressed: onPressed,
-      child: Text(content, style: defaultFont(fontWeight: FontWeight.bold)),
+      child: Text(
+        content,
+        style: defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

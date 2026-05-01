@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izpi_exchange/shared/styles/text.font.dart';
+import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SharedOutlinedButton extends StatelessWidget {
   const SharedOutlinedButton({super.key, required this.content, required this.onPressed});
@@ -11,7 +11,10 @@ class SharedOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
-      child: Text(content, style: defaultFont(fontWeight: FontWeight.bold)),
+      child: Text(
+        content,
+        style: defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
