@@ -10,7 +10,7 @@ class UpgradeRequiredTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Actualización Requerida',
-      style: defaultFontStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+      style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -22,7 +22,11 @@ class UpgradeRequiredDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Se ha detectado una nueva versión disponible de la aplicación.',
-      style: defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.normal),
+      style: defaultFontStyle(
+        color: Colors.grey.shade900,
+        fontSize: 15,
+        fontWeight: FontWeight.normal,
+      ),
     );
   }
 }
@@ -36,11 +40,14 @@ class UpgradeRequiredButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: SharedFilledButton(content: 'Descargar Actualización', onPressed: _handleOnPressed),
+      child: SharedFilledButton(
+        content: 'Descargar Actualización',
+        onPressed: _openBrowserWithWebsite,
+      ),
     );
   }
 
-  Future<void> _handleOnPressed() async {
+  Future<void> _openBrowserWithWebsite() async {
     await launchUrl(Uri.https(domain), mode: LaunchMode.externalApplication);
   }
 }

@@ -11,10 +11,7 @@ class SharedOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
-      child: Text(
-        content,
-        style: defaultFontStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
-      ),
+      child: Text(content, style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold)),
     );
   }
 }
