@@ -9,10 +9,7 @@ class HomeProductsLoadingState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Cargando la lista de productos...',
-        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
-      ),
+      child: Text('Cargando la lista de productos...', style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold)),
     );
   }
 }
@@ -23,10 +20,7 @@ class HomeProductsEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'La lista de productos está vacía...',
-        style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
-      ),
+      child: Text('La lista de productos está vacía...', style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold)),
     );
   }
 }
@@ -41,17 +35,10 @@ class HomeProductItem extends StatelessWidget {
     return InkWell(
       onTap: () => context.push('/product/${product.id}'),
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(15),
-        ),
+        decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(15)),
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 5,
-            children: [_getPriceWidget(), _getNameWidget()],
-          ),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 5, children: [_getPriceWidget(), _getNameWidget()]),
         ),
       ),
     );
@@ -59,10 +46,7 @@ class HomeProductItem extends StatelessWidget {
 
   Container _getPriceWidget() {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: Colors.grey.shade200,
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(999), color: Colors.grey.shade200),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
@@ -70,10 +54,7 @@ class HomeProductItem extends StatelessWidget {
           children: [
             Icon(Icons.paid_rounded, size: 15),
             const SizedBox(width: 5),
-            Text(
-              product.price.toString(),
-              style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
+            Text(product.price.toString(), style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ],
         ),
       ),

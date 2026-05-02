@@ -47,9 +47,7 @@ class GatewayService {
     final accessToken = await secureStorage.read(key: secureStorageAccessTokenKey);
 
     final socketUrl = createRequestUri('gateway').toString();
-    final socketOptions = OptionBuilder().setTransports(['websocket']).setAuth({
-      'accessToken': accessToken,
-    }).build();
+    final socketOptions = OptionBuilder().setTransports(['websocket']).setAuth({'accessToken': accessToken}).build();
 
     _socket = io(socketUrl, socketOptions);
 

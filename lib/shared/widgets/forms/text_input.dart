@@ -3,12 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:izpi_exchange/shared/styles/font.style.dart';
 
 class SharedTextInput extends StatelessWidget {
-  const SharedTextInput({
-    super.key,
-    required this.controller,
-    required this.keyboardType,
-    required this.label,
-  });
+  const SharedTextInput({super.key, required this.controller, required this.keyboardType, required this.label});
 
   final TextEditingController controller;
   final TextInputType keyboardType;
@@ -30,18 +25,11 @@ class SharedTextInput extends StatelessWidget {
   }
 
   InputDecoration _getInputDecoration() {
-    return InputDecoration(
-      border: _getInputDecorationBorder(),
-      labelStyle: _getLabelStyle(),
-      labelText: label,
-    );
+    return InputDecoration(border: _getInputDecorationBorder(), labelStyle: _getLabelStyle(), labelText: label);
   }
 
   OutlineInputBorder _getInputDecorationBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: const BorderSide(width: 1),
-    );
+    return OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: const BorderSide(width: 1));
   }
 
   List<TextInputFormatter> _getInputFormatters() {

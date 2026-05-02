@@ -31,10 +31,6 @@ class SharedAlert extends StatelessWidget {
   }
 
   Widget _getTextWidget() {
-    return Text(
-      content,
-      maxLines: null,
-      style: defaultFontStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
-    );
+    return Text(content, maxLines: null, style: defaultFontStyle(fontSize: 12.5, fontWeight: FontWeight.bold));
   }
 }

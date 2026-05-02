@@ -27,12 +27,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 15,
-            children: [
-              _getTitleWidget(),
-              _getDescriptionWidget(),
-              _getTextInputWidget(),
-              _getButtonWidget(),
-            ],
+            children: [_getTitleWidget(), _getDescriptionWidget(), _getTextInputWidget(), _getButtonWidget()],
           ),
         ),
       ),

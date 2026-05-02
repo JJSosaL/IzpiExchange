@@ -8,10 +8,7 @@ class SignInTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Iniciar Sesión',
-      style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    );
+    return Text('Iniciar Sesión', style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold));
   }
 }
 
@@ -22,11 +19,7 @@ class SignInEmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SharedTextInput(
-      controller: controller,
-      keyboardType: TextInputType.emailAddress,
-      label: 'Correo Electrónico',
-    );
+    return SharedTextInput(controller: controller, keyboardType: TextInputType.emailAddress, label: 'Correo Electrónico');
   }
 }
 

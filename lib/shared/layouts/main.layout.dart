@@ -49,10 +49,7 @@ class MainLayoutNavigationBar extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: _getNavigationBarLinkWidgets(),
-        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: _getNavigationBarLinkWidgets()),
       ),
     );
   }
@@ -61,11 +58,7 @@ class MainLayoutNavigationBar extends StatelessWidget {
     return [
       _NavigationBarItem(icon: Icons.home_rounded, label: 'Inicio', location: '/'),
       _NavigationBarItem(icon: Icons.inbox_rounded, label: 'Bandeja', location: '/inbox'),
-      _NavigationBarItem(
-        icon: Icons.add_circle_rounded,
-        label: 'Crear',
-        location: '/products/create',
-      ),
+      _NavigationBarItem(icon: Icons.add_circle_rounded, label: 'Crear', location: '/products/create'),
       _NavigationBarItem(icon: Icons.chat_rounded, label: 'Chats', location: '/chats'),
       _NavigationBarItem(icon: Icons.account_circle_rounded, label: 'Cuenta', location: '/account'),
     ];
@@ -73,24 +66,13 @@ class MainLayoutNavigationBar extends StatelessWidget {
 
   List<Widget> _getNavigationBarLinkWidgets() {
     return _getNavigationBarItems()
-        .map(
-          (item) => MainLayoutNavigationBarLink(
-            label: item.label,
-            location: item.location,
-            icon: item.icon,
-          ),
-        )
+        .map((item) => MainLayoutNavigationBarLink(label: item.label, location: item.location, icon: item.icon))
         .toList();
   }
 }
 
 class MainLayoutNavigationBarLink extends StatelessWidget {
-  const MainLayoutNavigationBarLink({
-    super.key,
-    required this.icon,
-    required this.label,
-    required this.location,
-  });
+  const MainLayoutNavigationBarLink({super.key, required this.icon, required this.label, required this.location});
 
   final IconData icon;
   final String label;

@@ -8,10 +8,7 @@ class VerifyOtpTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Verificar Identidad',
-      style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    );
+    return Text('Verificar Identidad', style: defaultFontStyle(fontSize: 30, fontWeight: FontWeight.bold));
   }
 }
 
@@ -22,11 +19,7 @@ class VerifyOtpDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Introduce el código de 6 dígitos que hemos enviado a tu correo electrónico.',
-      style: defaultFontStyle(
-        color: Colors.grey.shade900,
-        fontSize: 15,
-        fontWeight: FontWeight.normal,
-      ),
+      style: defaultFontStyle(color: Colors.grey.shade900, fontSize: 15, fontWeight: FontWeight.normal),
     );
   }
 }
@@ -38,11 +31,7 @@ class VerifyOtpCodeInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SharedTextInput(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      label: 'Código One-Time Password',
-    );
+    return SharedTextInput(controller: controller, keyboardType: TextInputType.number, label: 'Código One-Time Password');
   }
 }
 

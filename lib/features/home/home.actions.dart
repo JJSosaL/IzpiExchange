@@ -26,9 +26,7 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
     case 200:
       {
         final List responseBody = jsonDecode(response.body);
-        final responseData = responseBody
-            .map((productJson) => Product.fromJson(productJson))
-            .toList();
+        final responseData = responseBody.map((productJson) => Product.fromJson(productJson)).toList();
 
         return responseData;
       }
@@ -45,12 +43,7 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
 
 class Product {
   factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      description: json['description'],
-      id: json['id'],
-      name: json['name'],
-      price: (json['price']).toDouble(),
-    );
+    return Product(description: json['description'], id: json['id'], name: json['name'], price: (json['price']).toDouble());
   }
 
   Product({required this.description, required this.id, required this.name, required this.price});

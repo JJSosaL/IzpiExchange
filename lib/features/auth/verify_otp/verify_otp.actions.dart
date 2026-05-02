@@ -7,11 +7,7 @@ import 'package:izpi_exchange/core/rest/rest.response.dart';
 import 'package:izpi_exchange/core/storage/storage.constants.dart';
 import 'package:izpi_exchange/services/gateway.dart';
 
-Future<RESTResponse> createVerifySignUpOtpRequest(
-  String otpCode,
-  String action,
-  BuildContext context,
-) async {
+Future<RESTResponse> createVerifySignUpOtpRequest(String otpCode, String action, BuildContext context) async {
   final requestUri = createRequestUri('api/auth/verify-otp');
 
   final requestBody = jsonEncode({'action': action, 'otpCode': otpCode});
