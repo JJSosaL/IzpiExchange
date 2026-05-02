@@ -25,9 +25,7 @@ class UpgradeRequiredDescription extends StatelessWidget {
 }
 
 class UpgradeRequiredButton extends StatelessWidget {
-  const UpgradeRequiredButton({super.key, required this.domain});
-
-  final String domain;
+  const UpgradeRequiredButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +36,6 @@ class UpgradeRequiredButton extends StatelessWidget {
   }
 
   Future<void> _openBrowserWithWebsite() async {
-    await launchUrl(Uri.https(domain), mode: LaunchMode.externalApplication);
+    await launchUrl(Uri.https('izpiexchange.fancystudio.xyz'), mode: LaunchMode.externalApplication);
   }
 }

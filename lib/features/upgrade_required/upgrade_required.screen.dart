@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/upgrade_required/upgrade_required.widgets.dart';
 
 class UpgradeRequiredPage extends StatelessWidget {
-  const UpgradeRequiredPage({super.key, required this.domain});
-
-  final String domain;
+  const UpgradeRequiredPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,7 @@ class UpgradeRequiredPage extends StatelessWidget {
   }
 
   Widget _getButtonWidget() {
-    return UpgradeRequiredButton(domain: domain);
+    return UpgradeRequiredButton();
   }
 
   Widget _getDescriptionWidget() {
