@@ -54,8 +54,12 @@ class _CreateProductPageState extends State<CreateProductPage> {
     super.dispose();
   }
 
-  SnackBar _buildSnackBar(String errorMessage) {
+  SnackBar _buildErrorSnackBar(String errorMessage) {
     return SharedSnackBar.build(errorMessage, variant: SnackBarVariant.error);
+  }
+
+  SnackBar _buildSuccessSnackBar(String successMessage) {
+    return SharedSnackBar.build(successMessage, variant: SnackBarVariant.success);
   }
 
   Widget _getAddImagesButtonWidget() {
@@ -126,11 +130,14 @@ class _CreateProductPageState extends State<CreateProductPage> {
 
       final response = await createProductRequest(context, description: description, images: _images, name: name, price: price);
 
-      if (!response.success) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(response.message));
-        }
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          response.success
+              ? _buildSuccessSnackBar('El producto ha sido creado y ha sido añadido a la lista de verificación')
+              : _buildErrorSnackBar(response.message),
+        );
       }
+      if (!response.success) {}
     } finally {
       setState(() {
         _isLoading = false;

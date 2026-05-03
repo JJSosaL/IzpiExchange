@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:izpi_exchange/core/rest/rest.constants.dart';
 import 'package:izpi_exchange/core/rest/rest.functions.dart';
+import 'package:izpi_exchange/features/account/account.screen.dart';
 import 'package:izpi_exchange/features/auth/index/index.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_in/sign_in.screen.dart';
 import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
@@ -37,6 +38,7 @@ Future<bool> shouldUpgradeVersion() async {
 final router = GoRouter(
   routes: [
     GoRoute(builder: (_, _) => const HomePage(), path: '/'),
+    GoRoute(builder: (_, _) => const AccountPage(), path: '/account'),
     GoRoute(builder: (_, _) => const AuthPage(), path: '/auth'),
     GoRoute(builder: (_, _) => const SignInPage(), path: '/auth/sign_in'),
     GoRoute(builder: (_, _) => const SignUpPage(), path: '/auth/sign_up'),
