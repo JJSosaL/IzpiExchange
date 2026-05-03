@@ -36,9 +36,17 @@ class HomeProductItem extends StatelessWidget {
       onTap: () => context.push('/product/${product.id}'),
       child: Container(
         decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 5, children: [_getPriceWidget(), _getNameWidget()]),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 100,
+              child: AspectRatio(aspectRatio: 1, child: Image.network(product.cover, fit: BoxFit.cover)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 5, children: [_getPriceWidget(), _getNameWidget()]),
+            ),
+          ],
         ),
       ),
     );
@@ -51,9 +59,10 @@ class HomeProductItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 5,
           children: [
             Icon(Icons.paid_rounded, size: 15),
-            const SizedBox(width: 5),
             Text(product.price.toString(), style: defaultFontStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ],
         ),
