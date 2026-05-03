@@ -43,13 +43,20 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
 
 class Product {
   factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(description: json['description'], id: json['id'], name: json['name'], price: (json['price']).toDouble());
+    return Product(
+      description: json['description'],
+      id: json['id'],
+      images: json['images'],
+      name: json['name'],
+      price: (json['price']).toDouble(),
+    );
   }
 
   Product({required this.description, required this.id, required this.name, required this.price});
 
   final String description;
   final String id;
+  final List<String> images;
   final String name;
   final double price;
 }
