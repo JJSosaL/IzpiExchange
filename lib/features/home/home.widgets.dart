@@ -33,7 +33,7 @@ class HomeProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push('/product/${product.id}'),
+      onTap: () => context.push('/products/${product.id}'),
       child: Container(
         decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(15)),
         child: Row(

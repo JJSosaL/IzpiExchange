@@ -12,7 +12,9 @@ import 'package:izpi_exchange/features/auth/sign_up/sign_up.screen.dart';
 import 'package:izpi_exchange/features/auth/verify_otp/verify_otp.screen.dart';
 import 'package:izpi_exchange/features/chats/chats.screen.dart';
 import 'package:izpi_exchange/features/home/home.screen.dart';
+import 'package:izpi_exchange/features/inbox/inbox.screen.dart';
 import 'package:izpi_exchange/features/products/create/create.screen.dart';
+import 'package:izpi_exchange/features/products/view/view.screen.dart';
 import 'package:izpi_exchange/features/upgrade_required/upgrade_required.screen.dart';
 import 'package:izpi_exchange/services/gateway.dart';
 import 'package:logger/logger.dart';
@@ -51,7 +53,9 @@ final router = GoRouter(
       path: '/auth/verify_otp/:action',
     ),
     GoRoute(builder: (_, _) => const ChatsPage(), path: '/chats'),
+    GoRoute(builder: (_, _) => const InboxPage(), path: '/inbox'),
     GoRoute(builder: (_, _) => const CreateProductPage(), path: '/products/create'),
+    GoRoute(builder: (_, _) => const ViewProductPage(), path: '/products/:id'),
   ],
 );
 
