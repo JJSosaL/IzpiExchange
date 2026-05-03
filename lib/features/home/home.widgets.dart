@@ -42,9 +42,11 @@ class HomeProductItem extends StatelessWidget {
               width: 100,
               child: AspectRatio(aspectRatio: 1, child: Image.network(product.cover, fit: BoxFit.cover)),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 5, children: [_getPriceWidget(), _getNameWidget()]),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 5, children: [_getPriceWidget(), _getNameWidget()]),
+              ),
             ),
           ],
         ),
@@ -52,13 +54,12 @@ class HomeProductItem extends StatelessWidget {
     );
   }
 
-  Container _getPriceWidget() {
+  Widget _getPriceWidget() {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(999), color: Colors.grey.shade200),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 5,
           children: [
@@ -70,7 +71,7 @@ class HomeProductItem extends StatelessWidget {
     );
   }
 
-  Text _getNameWidget() {
+  Widget _getNameWidget() {
     return Text(
       product.name,
       overflow: TextOverflow.ellipsis,
