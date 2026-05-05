@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:izpi_exchange/features/home/home.actions.dart';
 import 'package:izpi_exchange/features/home/home.widgets.dart';
-import 'package:izpi_exchange/services/gateway.dart';
 import 'package:izpi_exchange/shared/layouts/main.layout.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +14,6 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
   List<Product> products = [];
 
-  final gateway = GatewayService();
-
   @override
   Widget build(BuildContext context) {
     return MainLayout(body: _buildChildWidget(), title: 'Inicio');
@@ -24,7 +21,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    gateway.off('PRODUCT_PUBLISHED');
     super.dispose();
   }
 
@@ -33,7 +29,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _initializeProducts();
-    _initializeSocket();
   }
 
   Widget _buildChildWidget() {
@@ -58,16 +53,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       products = data;
       isLoading = false;
-    });
-  }
-
-  void _initializeSocket() async {
-    gateway.on('PRODUCT_PUBLISHED', (data) {
-      if (mounted) {
-        setState(() {
-          products.add(Product.fromJson(data));
-        });
-      }
     });
   }
 }

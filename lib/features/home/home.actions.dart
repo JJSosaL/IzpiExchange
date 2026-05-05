@@ -32,7 +32,11 @@ Future<List<Product>> getPublishedProducts(BuildContext context) async {
       }
     case 401:
       {
-        throw Exception('El usuario no está autenticado');
+        if (context.mounted) {
+          context.go('/auth');
+        }
+
+        return [];
       }
     default:
       {
